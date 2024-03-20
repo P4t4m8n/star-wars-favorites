@@ -3,6 +3,7 @@ import { fetchMovies } from '@/services/api';
 import Loading from "../components/Loading/Loading";
 import MovieList from "../components/MovieList/MovieList";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
+import { movieService } from "../services/movie.service";
 
 
 
@@ -14,18 +15,17 @@ export function MovieIndex() {
     const [selectedMovie, setSelectedMovie] = useState(null);
 
     useEffect(() => {
-        async function getMovies() {
-            try {
-                const data = await fetchMovies();
-                setMovies(data);
-            } catch (error) {
-                console.error("Failed fetching movies:", error);
-            } finally {
-            }
-        }
-
-        getMovies();
+        loadMovies();
     }, []);
+
+    async function loadMovies() {
+        try {
+            const movies = await movieService.getMovies()
+            setMovies(movies)
+        } catch (error) {
+            console.error("Failed fetching movies:", error);
+        }
+    }
 
     useEffect(() => {
         localStorage.setItem('favorites', JSON.stringify(favorites));
