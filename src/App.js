@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App flex flex-column">
       {/* //add function to components propes */}
       <MovieDetails movie={selectedMovie} favorites={favorites} onFavoriteToggle={handleFavorite} />
       <MovieList onMovieSelect={handleMovieSelect} />

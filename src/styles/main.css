@@ -11,3 +11,5 @@
 
 /* Cmps */
 @import './cmps/MovieItem.css';
+@import './cmps/MovieList.css';
+@import './cmps/MovieDetails.css';
