@@ -6,7 +6,7 @@ function MovieItem({ movie, onMovieSelect }) {
       {/* //Call back props was not sent to parent */}
       <img src={`/imgs/${movie.title}.jpg`} alt=''></img>
       <button onClick={() => onMovieSelect(movie)}>
-        View {movie.title}
+        {movie.title}
       </button>
     </div>
   );
