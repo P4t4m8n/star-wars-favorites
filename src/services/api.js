@@ -6,5 +6,7 @@ const api = axios.create({
 
 export const fetchMovies = async () => {
   const response = await api.get('films/');
+
   return response.data.results;
 };
+

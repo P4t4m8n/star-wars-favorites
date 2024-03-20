@@ -11,7 +11,6 @@ function MovieList({ onMovieSelect }) {
     async function getMovies() {
       try {
         const data = await fetchMovies();
-        console.log("data:", data)
         setMovies(data);
       } catch (error) {
         console.error("Failed fetching movies:", error);
@@ -25,15 +24,15 @@ function MovieList({ onMovieSelect }) {
 
   return (
     <div>
-        {isLoading ? (
-            <Loading message="Loading Movies..."/>
-        ) : (
-          movies.map(movie => (
-            <MovieItem key={movie.episode_id} movie={movie} onMovieSelect={onMovieSelect} />
-          ))
-        )}
+      {isLoading ? (
+        <Loading message="Loading Movies..." />
+      ) : (
+        movies.map(movie => (
+          <MovieItem key={movie.episode_id} movie={movie} onMovieSelect={onMovieSelect} />
+        ))
+      )}
     </div>
-);
+  );
 }
 
 export default MovieList;
