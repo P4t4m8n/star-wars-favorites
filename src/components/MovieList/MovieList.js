@@ -1,37 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { fetchMovies } from '@/services/api';
+import React from 'react';
 import MovieItem from '@/components/MovieItem/MovieItem';
-import Loading from '@/components/Loading/Loading';
 
-function MovieList({ onMovieSelect }) {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function getMovies() {
-      try {
-        const data = await fetchMovies();
-        setMovies(data);
-      } catch (error) {
-        console.error("Failed fetching movies:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    getMovies();
-  }, []);
+function MovieList({ onMovieSelect, movies }) {
 
   return (
-    <div className='movie-list grid'>
-      {isLoading ? (
-        <Loading message="Loading Movies..." />
-      ) : (
+    <ul className='movie-list flex'>
+      {
         movies.map(movie => (
-          <MovieItem key={movie.episode_id} movie={movie} onMovieSelect={onMovieSelect} />
+          <MovieItem
+            key={movie.episode_id}
+            movie={movie}
+            onMovieSelect={onMovieSelect} />
         ))
-      )}
-    </div>
+
+      }
+    </ul>
   );
 }
 
