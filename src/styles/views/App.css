@@ -16,13 +16,14 @@
 .app::before {
   content: "";
   position: absolute;
-  top: -20%;
-  left: -140%;
-  right: -60%;
-  bottom: -70%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
   background-size: cover;
   background-image: inherit;
-  filter: blur(10px);
+  filter: blur(3px);
   z-index: -1;
 }
 

@@ -25,7 +25,7 @@ function App() {
     setSelectedMovie(movie);
   }
 
-  const backgroundImage = selectedMovie ? `url('/imgs/${selectedMovie.title}.jpg')` : 'none'
+  const backgroundImage = selectedMovie ? `url('/imgs/${selectedMovie.title}.jpg')` : `url('/imgs/stars.jpg')`
 
   return (
     <div className="app flex flex-column" style={{ backgroundImage: backgroundImage }}>
