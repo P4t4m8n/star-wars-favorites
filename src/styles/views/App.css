@@ -1,6 +1,34 @@
-.App {
-  text-align: center;
+.app {
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-items: center;
+
+  position: relative;
+  z-index: 0;
+  padding-inline: 3em;
+  padding-block: 2em;
+  height: 100vh;
+  gap: 1em;
+  overflow: hidden;
+
 }
+
+.app::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -140%;
+  right: -60%;
+  bottom: -70%;
+  background-size: cover;
+  background-image: inherit;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+
+
+
 
 
 /* //? */

@@ -25,12 +25,14 @@ function App() {
     setSelectedMovie(movie);
   }
 
+  const backgroundImage = selectedMovie ? `url('/imgs/${selectedMovie.title}.jpg')` : 'none'
+
   return (
-    <div className="App flex flex-column">
+    <div className="app flex flex-column" style={{ backgroundImage: backgroundImage }}>
       {/* //add function to components propes */}
-      <MovieDetails movie={selectedMovie} favorites={favorites} onFavoriteToggle={handleFavorite} />
+      < MovieDetails movie={selectedMovie} favorites={favorites} onFavoriteToggle={handleFavorite} />
       <MovieList onMovieSelect={handleMovieSelect} />
-    </div>
+    </div >
   );
 
 }
