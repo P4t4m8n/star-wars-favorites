@@ -11,6 +11,8 @@ function App() {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
+
+  //Function was not called anywhere in the component
   const handleFavorite = (movie) => {
     if (favorites.some(fav => fav.episode_id === movie.episode_id)) {
       setFavorites(favorites.filter(fav => fav.episode_id !== movie.episode_id));
@@ -25,8 +27,9 @@ function App() {
 
   return (
     <div className="App">
-      <MovieDetails movie={selectedMovie} favorites={favorites} />
-      <MovieList onMovieSelect={handleMovieSelect}/>
+      {/* //add function to components popes */}
+      <MovieDetails movie={selectedMovie} favorites={favorites} onFavoriteToggle={handleFavorite} />
+      <MovieList onMovieSelect={handleMovieSelect} />
     </div>
   );
 
