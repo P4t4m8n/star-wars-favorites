@@ -23,7 +23,7 @@ function MovieList({ onMovieSelect }) {
   }, []);
 
   return (
-    <div className='movie-list flex'>
+    <div className='movie-list grid'>
       {isLoading ? (
         <Loading message="Loading Movies..." />
       ) : (

@@ -2,15 +2,15 @@
   background-repeat: no-repeat;
   background-size: contain;
   align-items: center;
-
   position: relative;
   z-index: 0;
   padding-inline: 3em;
   padding-block: 2em;
   height: 100vh;
   gap: 1em;
+  width: 100vw;
   overflow: hidden;
-
+  justify-content: center;
 }
 
 .app::before {
