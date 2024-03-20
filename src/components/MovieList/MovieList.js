@@ -11,6 +11,7 @@ function MovieList({ onMovieSelect }) {
     async function getMovies() {
       try {
         const data = await fetchMovies();
+        console.log("data:", data)
         setMovies(data);
       } catch (error) {
         console.error("Failed fetching movies:", error);

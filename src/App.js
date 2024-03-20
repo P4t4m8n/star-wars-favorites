@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* //add function to components popes */}
+      {/* //add function to components propes */}
       <MovieDetails movie={selectedMovie} favorites={favorites} onFavoriteToggle={handleFavorite} />
       <MovieList onMovieSelect={handleMovieSelect} />
     </div>
