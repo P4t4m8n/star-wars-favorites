@@ -6,7 +6,7 @@
 @import './setup/vars.css';
 
 /* Views */
-@import './views/App.css';
+@import './views/MovieIndex.css';
 
 /* Cmps */
 @import './cmps/MovieItem.css';

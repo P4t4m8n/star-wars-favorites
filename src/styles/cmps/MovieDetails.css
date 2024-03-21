@@ -6,15 +6,18 @@
     width: 65vw;
 }
 
+
+
+
+
 .movie-details img {
     border-radius: 12px;
     object-fit: fill;
     object-position: center;
 }
 
-.movie-details p {
-    display: none;
-}
+
+
 .movie-details .movie-info {
     display: flex;
     position: absolute;
@@ -43,6 +46,45 @@
 .movie-details .movie-info button svg {
     width: 1.5em;
     height: 1.5em;
+}
+
+.opening_crawl {
+    position: absolute;
+    width: 90%;
+    height: 100px;
+    top: 50%;
+    overflow: hidden;
+    font-family: 'Pathway Gothic One', sans-serif;
+    color: #feda4a;
+    text-align: justify;
+    transform-origin: 50% 100%;
+    transform: perspective(300px) rotateX(25deg);
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 0.5s;
+    z-index: 10;
+}
+
+.scroll-text {
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    animation: crawl 30s linear infinite;
+    animation-play-state: running;
+}
+
+.movie-details:hover .scroll-text {
+    animation-play-state: paused;
+}
+
+@keyframes crawl {
+    0% {
+        top: 100%;
+    }
+
+    100% {
+        top: -1500%;
+    }
 }
 
 @media (max-width:450px) {

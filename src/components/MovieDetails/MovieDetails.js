@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { StarSvg } from '../../services/icon.service';
 import { useParams } from 'react-router-dom';
 import { useEffectUpdate } from '../../hooks/useEffectUpdate';
@@ -7,16 +7,34 @@ import Loading from '../Loading/Loading';
 import { BackgroundTitleContext } from '../../views/MovieIndex';
 
 function MovieDetails() {
-  const [movie, setMovie] = useState()
+  const [movie, setMovie] = useState(null)
   let { episodeId } = useParams()
+  const elRef = useRef()
 
-  useEffectUpdate(loadMovie, [episodeId], { episodeId })
   const { updateBackgroundImg } = useContext(BackgroundTitleContext)
 
-  function loadMovie({ episodeId }) {
+  useEffect(() => {
+    loadPage(episodeId)
+  }, [episodeId])
+
+  function loadPage(episodeId) {
+    const _movie = loadMovie(episodeId)
+    updateBackgroundImg(_movie.title)
+    startAnimation()
+  }
+
+  function loadMovie(episodeId) {
     const _movie = movieService.getMovie(episodeId)
     setMovie(_movie)
-    updateBackgroundImg(_movie.title)
+    return _movie
+  }
+
+  function startAnimation() {
+    const element = elRef.current;
+    if (!element) return
+    element.style.animation = 'none';
+    void element.offsetWidth;
+    element.style.animation = '';
   }
 
   const handleFavorite = (movie) => {
@@ -26,7 +44,6 @@ function MovieDetails() {
   };
 
   if (!movie) return <Loading message='Loading Movie' />
-
 
   return (
     <div className='movie-details flex'>
@@ -39,7 +56,11 @@ function MovieDetails() {
             movie.isFavorite ? <StarSvg fill='white' /> : <StarSvg fill='none' />}
         </button>
       </div>
-      <p><strong>Episode:</strong> {movie.episodeId} </p>
+      <div className='opening_crawl'>
+        <p ref={elRef} className='scroll-text'>
+          {movie.opening_crawl}
+        </p>
+      </div>
     </div>
   );
 }

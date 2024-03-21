@@ -19,3 +19,11 @@
     margin: 0;
     list-style-type: none;
 }
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}

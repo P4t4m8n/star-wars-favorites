@@ -1,29 +1,26 @@
 .app {
+  box-sizing: border-box;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   align-items: center;
   position: relative;
   z-index: 0;
-  padding-inline: 3em;
-  padding-block: 2em;
-  height: 100vh;
   gap: 1em;
-  width: 100vw;
-  overflow: hidden;
+  width: 98vw;
   justify-content: center;
 }
 
 .app::before {
   content: "";
   position: absolute;
-  top: -25%;
-  left: -25%;
-  right: -25%;
-  bottom: -25%;
-  background-repeat:no-repeat;
+  left: 0;
+  right: 0;
+  bottom:-0;
+  top: 0;
+  background-repeat: no-repeat;
   background-size: cover;
   background-image: inherit;
-  filter: blur(7px);
+  filter: blur(4px);
   z-index: -1;
 }
 

@@ -13,7 +13,7 @@ export const BackgroundTitleContext = createContext({
 function MovieIndex() {
 
     const [movies, setMovies] = useState(null)
-    const [backgroundImg, setBackgroundImg] = useState('starts')
+    const [backgroundImg, setBackgroundImg] = useState('stars')
     useEffectUpdate(loadMovies, [])
 
     async function loadMovies() {
