@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 
 
-export const useEffectUpdate = (callBack, dependencies = []) => {
+export const useEffectUpdate = (callBack, dependencies = [], props = {}) => {
 
     const isFirstRender = useRef(true)
 
@@ -10,6 +10,6 @@ export const useEffectUpdate = (callBack, dependencies = []) => {
             isFirstRender.current = false
             return
         }
-        callBack()
+        callBack({ ...props })
     }, dependencies)
 }
