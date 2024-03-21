@@ -6,10 +6,10 @@ function MovieItem({ movie }) {
     <li className='movie-item' key={movie.episodeId}>
       {/* //Call back props was not sent to parent */}
       <img src={movie.imgUrl} alt=''></img>
-      <button><Link to={`/${movie.episodeId}`}>
+      <Link to={`/${movie.episodeId}`}>
         {movie.title}
       </Link>
-      </button>
+
     </li>
   );
 }
