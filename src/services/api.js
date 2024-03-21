@@ -14,6 +14,7 @@ export const fetchMovies = async () => {
 };
 
 export const fetchMovieImages = async (movieName) => {
+  console.log("movieName:", movieName)
   const options = {
     method: 'GET',
     url: 'https://movies-api14.p.rapidapi.com/search',
