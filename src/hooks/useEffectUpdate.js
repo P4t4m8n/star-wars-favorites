@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react"
-
-
+//Prevent  double rendering
 export const useEffectUpdate = (callBack, dependencies = [], props = {}) => {
 
     const isFirstRender = useRef(true)

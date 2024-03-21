@@ -9,12 +9,10 @@ export const fetchMovies = async () => {
     url,
     method: 'GET'
   });
-  console.log("response:", response)
   return response.data.results;
 };
 
 export const fetchMovieImages = async (movieName) => {
-  console.log("movieName:", movieName)
   const options = {
     method: 'GET',
     url: 'https://movies-api14.p.rapidapi.com/search',
