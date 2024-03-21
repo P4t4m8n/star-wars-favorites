@@ -1,0 +1,8 @@
+.theme-btn {
+    position: sticky;
+    top: 7%;
+    right: 90%;
+    width: 5em;
+    height: 2em;
+    color: white;
+}

@@ -1,10 +1,14 @@
 .movie-item {
     height: 13em;
     border-radius: 12px;
-    width: 10em;
+    width: 13em;
     position: relative;
-    transition: transform 0.6s;
+    transition: transform 0.3s;
     transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+    will-change: transform;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid transparent;
 }
 
 .movie-item img {
@@ -15,40 +19,45 @@
 }
 
 .movie-item a {
-
     position: absolute;
     width: 100%;
-    color: white;
+    color: var(--link-color);
     z-index: 10;
     text-align: center;
     bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
-    font-weight: bold;
-    font-size: .7rem;
+    font-weight: 700;
+    font-size: 1rem;
     margin-inline: 2px;
     border-radius: 12px;
+    text-shadow: 2px 2px 4px var(--overlay-color);
 }
 
 .movie-item a::before {
     border-radius: 12px;
     content: '';
     position: absolute;
-    top: -75%;
+    top: -50%;
     left: 0;
     right: 0;
-    bottom: -75%;
-    background: radial-gradient(circle, rgba(186, 185, 185, 0.5) 0%, transparent 100%);
+    bottom: -50%;
+    background: radial-gradient(circle, var(--overlay-color) 0%, transparent 70%);
     border-radius: 12px;
     z-index: -1;
 }
 
+.movie-item,
 .movie-item a:hover {
     cursor: pointer;
 }
 
+.movie-item:hover {
+    border: 1px solid var(--link-color);
+}
+
 .movie-item button {
-    color: white;
+    color: var(--button);
 }
 
 .movie-item-front,
@@ -72,20 +81,19 @@
 .movie-item-back {
     transform: rotateY(180deg);
     z-index: 1;
-    background-color: rgba(211, 211, 211, 0.2);
+    background-color: var(--card-bg-color);
     padding: 16px 8px 4px 8px;
     justify-content: space-around;
 }
 
-.movie-item-back h2 {
+.movie-item-back h2,h3,h4 {
     text-align: center;
+    color: var( --button-bg-color);
 }
 
 .flipped {
     transform: rotateY(180deg);
 }
-
-
 
 .flip-btn {
     position: absolute;
@@ -94,6 +102,14 @@
     width: 2em;
     height: 2em;
     z-index: 5;
+}
+
+.flip-btn:hover{
+    svg{
+
+        fill:var(--link-color);
+        stroke:var(--link-color) ;
+    }
 }
 
 .flipped .flip-btn {
@@ -105,3 +121,4 @@
     width: inherit;
     height: inherit;
 }
+

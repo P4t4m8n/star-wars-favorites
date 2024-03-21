@@ -1,20 +1,22 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { StarSvg } from '../../services/icon.service';
 import { useParams } from 'react-router-dom';
-import { useEffectUpdate } from '../../hooks/useEffectUpdate';
 import { movieService } from '../../services/movie.service';
 import Loading from '../Loading/Loading';
 import { BackgroundTitleContext } from '../../views/MovieIndex';
+import { useTheme } from '../../hooks/useTheme';
 
 function MovieDetails() {
   const [movie, setMovie] = useState(null)
-  let { episodeId } = useParams()
+  const { episodeId } = useParams()
+  const { theme } = useTheme()
   const elRef = useRef()
 
   const { updateBackgroundImg } = useContext(BackgroundTitleContext)
 
   useEffect(() => {
     loadPage(episodeId)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [episodeId])
 
   function loadPage(episodeId) {
@@ -46,7 +48,7 @@ function MovieDetails() {
   if (!movie) return <Loading message='Loading Movie' />
 
   return (
-    <div className='movie-details flex'>
+    <div className={'movie-details flex ' + theme}>
       <img src={movie.imgUrl} alt=''></img>
       <div className='movie-info'>
         <h2>{movie.title}</h2>

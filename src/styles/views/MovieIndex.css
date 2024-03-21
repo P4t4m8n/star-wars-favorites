@@ -7,7 +7,9 @@
   z-index: 0;
   gap: 1em;
   width: 98vw;
+  border-radius: 12px;
   justify-content: center;
+  border: 2px solid var(--link-color) ;
 }
 
 .app::before {
@@ -23,11 +25,6 @@
   filter: blur(4px);
   z-index: -1;
 }
-
-
-
-
-
 
 /* //? */
 /* .App-logo {

@@ -1,5 +1,37 @@
 :root {
-    --breakpoint-mobile: 375px;
+    --breakpoint-mobile: 450px;
     --breakpoint-tablet: 768px;
     --breakpoint-desktop: 1024px;
+}
+
+/* Global variables */
+:root {
+    --text-color: #333;
+    --background-color: #f0f0f0;
+    --button-bg-color: #4caf50;
+    --button-text-color: #ffffff;
+    --link-color: #ff9800;
+    --card-bg-color: #ffffff;
+}
+
+/* Empire Theme Variables */
+.empire {
+    --text-color: #f5f5f5;
+    --background-color: #1a1a1a;
+    --button-bg-color: #d32f2f;
+    --button-text-color: #ffffff;
+    --link-color: #d32f2f;
+    --card-bg-color: #262626;
+    --overlay-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Rebellion Theme Variables */
+.rebellion {
+    --text-color: #333;
+    --background-color: #f0f0f0;
+    --button-bg-color: #4caf50;
+    --button-text-color: #ffffff;
+    --link-color: #ff9800;
+    --card-bg-color: #ffffff;
+    --overlay-color: rgba(0, 0, 0, 0.7);
 }

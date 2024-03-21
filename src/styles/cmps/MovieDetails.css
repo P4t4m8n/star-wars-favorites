@@ -4,19 +4,14 @@
     justify-content: center;
     border-radius: 12px;
     width: 65vw;
+    border: 1px solid var(--link-color);
 }
-
-
-
-
 
 .movie-details img {
     border-radius: 12px;
     object-fit: fill;
     object-position: center;
 }
-
-
 
 .movie-details .movie-info {
     display: flex;
@@ -25,11 +20,10 @@
     left: 15%;
     z-index: 2;
     min-height: fit-content;
-
 }
 
 .movie-details .movie-info h2 {
-    color: white;
+    color: var(--link-color);
     font-size: 2rem;
     width: 4.5em;
     margin: 0;
@@ -87,7 +81,7 @@
     }
 }
 
-@media (max-width:450px) {
+@media (max-width:var(--breakpoint-mobile)) {
     .movie-details img {
         object-fit: fill;
         height: 100%;

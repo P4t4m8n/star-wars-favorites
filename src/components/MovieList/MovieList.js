@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieItem from '@/components/MovieItem/MovieItem';
 
+
 function MovieList({ onMovieSelect, movies }) {
 
   return (
