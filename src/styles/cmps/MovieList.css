@@ -1,6 +1,9 @@
 .movie-list {
-    gap: .5em;
+    display: flex;
+    gap: 1em;
     width: 70vw;
     justify-content: center;
+    flex-wrap: wrap;
+    
 
 }

@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import Loading from "../components/Loading/Loading";
 import MovieList from "../components/MovieList/MovieList";
 import { movieService } from "../services/movie.service";
 import { useEffectUpdate } from "../hooks/useEffectUpdate";
 import { Outlet } from "react-router-dom";
 
+export const BackgroundTitleContext = createContext({
+    selectedMovieTitle: 'start',
+    updateBackgroundImg: () => { }
+})
+
 function MovieIndex() {
 
     const [movies, setMovies] = useState(null)
-    const [selectedMovie, setSelectedMovie] = useState(null);
-
+    const [backgroundImg, setBackgroundImg] = useState('starts')
     useEffectUpdate(loadMovies, [])
 
     async function loadMovies() {
@@ -21,16 +25,18 @@ function MovieIndex() {
         }
     }
 
-    function handleMovieSelect(movie) {
-        setSelectedMovie(movie);
+    const updateBackgroundImg = (newTitle) => {
+        setBackgroundImg(newTitle);
     }
+
     if (!movies) return <Loading message="Loading Movies..." />
-    const backgroundImage = selectedMovie ? `url('/imgs/${selectedMovie.title}.jpg')` : `url('/imgs/stars.jpg')`
 
     return (
-        <section className="app flex flex-column" style={{ backgroundImage: backgroundImage }}>
-            <Outlet/>
-            <MovieList onMovieSelect={handleMovieSelect} movies={movies} />
+        <section className="app flex flex-column" style={{ backgroundImage: `url('/imgs/${backgroundImg}.jpg')` }}>
+            <BackgroundTitleContext.Provider value={{ selectedMovieTitle: backgroundImg, updateBackgroundImg }} >
+                <Outlet />
+            </BackgroundTitleContext.Provider>
+            <MovieList movies={movies} />
         </section>
     )
 }
