@@ -3,21 +3,18 @@
     height: 45vh;
     justify-content: center;
     border-radius: 12px;
-    overflow: hidden;
-    width: 100%;
+    width: 70vw;
+}
+
+.movie-details img {
+    border-radius: 12px;
+    object-fit: fill;
+    object-position: center;
 }
 
 .movie-details p {
     display: none;
 }
-
-.movie-details img {
-    height: 165%;
-    width: 100%;
-    border-radius: 12px;
-    object-fit: fill;
-}
-
 .movie-details .movie-info {
     display: flex;
     position: absolute;
