@@ -4,6 +4,7 @@ import MovieList from "../components/MovieList/MovieList";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
 import { movieService } from "../services/movie.service";
 import { fetchMovieImages } from "../services/api";
+import { useEffectUpdate } from "../hooks/useEffectUpdate";
 
 
 
@@ -14,9 +15,7 @@ export function MovieIndex() {
     const [favorites, setFavorites] = useState(initialFavorites);
     const [selectedMovie, setSelectedMovie] = useState(null);
 
-    useEffect(() => {
-        loadMovies();
-    }, []);
+    useEffectUpdate(loadMovies, [])
 
     async function loadMovies() {
         try {
@@ -45,14 +44,11 @@ export function MovieIndex() {
     if (!movies) return <Loading message="Loading Movies..." />
     const backgroundImage = selectedMovie ? `url('/imgs/${selectedMovie.title}.jpg')` : `url('/imgs/stars.jpg')`
 
-    function test() {
-       const t =  fetchMovieImages('A New Hope')
-       console.log("t:", t)
-    }
+
 
     return (
         <section className="app flex flex-column" style={{ backgroundImage: backgroundImage }}>
-            <button onClick={test}>!!!!!!!!!!!!!!!!!!!!!!!!!</button>
+            {/* <button onClick={test}>!!!!!!!!!!!!!!!!!!!!!!!!!</button> */}
             {selectedMovie && <MovieDetails favorites={favorites} movie={selectedMovie} onFavoriteToggle={handleFavorite} />}
             <MovieList onMovieSelect={handleMovieSelect} movies={movies} />
         </section>
