@@ -6,7 +6,7 @@ function MovieDetails({ movie, onFavoriteToggle, favorites }) {
 
   return (
     <div className='movie-details flex'>
-      <img src={`/imgs/${movie.title}.jpg`} alt=''></img>
+      <img src={movie.imgUrl} alt=''></img>
       <div className='movie-info'>
         <h2>{movie.title}</h2>
         <button onClick={() => onFavoriteToggle(movie)}

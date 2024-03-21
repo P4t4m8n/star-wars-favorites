@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchMovies } from '@/services/api';
 import Loading from "../components/Loading/Loading";
 import MovieList from "../components/MovieList/MovieList";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
 import { movieService } from "../services/movie.service";
+import { fetchMovieImages } from "../services/api";
 
 
 
@@ -45,8 +45,14 @@ export function MovieIndex() {
     if (!movies) return <Loading message="Loading Movies..." />
     const backgroundImage = selectedMovie ? `url('/imgs/${selectedMovie.title}.jpg')` : `url('/imgs/stars.jpg')`
 
+    function test() {
+       const t =  fetchMovieImages('A New Hope')
+       console.log("t:", t)
+    }
+
     return (
         <section className="app flex flex-column" style={{ backgroundImage: backgroundImage }}>
+            <button onClick={test}>!!!!!!!!!!!!!!!!!!!!!!!!!</button>
             {selectedMovie && <MovieDetails favorites={favorites} movie={selectedMovie} onFavoriteToggle={handleFavorite} />}
             <MovieList onMovieSelect={handleMovieSelect} movies={movies} />
         </section>

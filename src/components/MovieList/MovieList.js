@@ -8,7 +8,7 @@ function MovieList({ onMovieSelect, movies }) {
       {
         movies.map(movie => (
           <MovieItem
-            key={movie.episode_id}
+            key={movie.episode}
             movie={movie}
             onMovieSelect={onMovieSelect} />
         ))

@@ -2,9 +2,9 @@ import React from 'react';
 
 function MovieItem({ movie, onMovieSelect }) {
   return (
-    <li className='movie-item' key={movie.episode_id}>
+    <li className='movie-item' key={movie.episode}>
       {/* //Call back props was not sent to parent */}
-      <img src={`/imgs/${movie.title}.jpg`} alt=''></img>
+      <img src={movie.imgUrl} alt=''></img>
       <button onClick={() => onMovieSelect(movie)}>
         {movie.title}
       </button>
