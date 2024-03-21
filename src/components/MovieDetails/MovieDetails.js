@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StarSvg } from '../../services/icon.service';
+import { useParams } from 'react-router-dom';
+import { useEffectUpdate } from '../../hooks/useEffectUpdate';
+import { movieService } from '../../services/movie.service';
+import Loading from '../Loading/Loading';
 
-function MovieDetails({ movie, onFavoriteToggle, favorites }) {
-  if (!movie) return null;
+function MovieDetails() {
+  const [movie, setMovie] = useState()
+  let { episodeId } = useParams()
+
+  useEffectUpdate(loadMovie, [episodeId], {episodeId})
+
+  function loadMovie({episodeId}) {
+    const _movie = movieService.getMovie(episodeId)
+    setMovie(_movie)
+  }
+
+  const handleFavorite = (movie) => {
+    movie.isFavorite = !movie.isFavorite
+    const updatedMovie = movieService.updateMovie(movie)
+    setMovie({...updatedMovie})
+  };
+
+  if (!movie) return <Loading message='Loading Movie' />
 
   return (
     <div className='movie-details flex'>
       <img src={movie.imgUrl} alt=''></img>
       <div className='movie-info'>
         <h2>{movie.title}</h2>
-        <button onClick={() => onFavoriteToggle(movie)}
+        <button onClick={() => handleFavorite(movie)}
         >
           {
             movie.isFavorite ? <StarSvg fill='white' /> : <StarSvg fill='none' />}
