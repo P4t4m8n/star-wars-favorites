@@ -1,12 +1,18 @@
 import React from 'react';
-import { MovieIndex } from './views/MovieIndex';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
+import MovieIndex from './views/MovieIndex';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 
 function App() {
-
   return (
-    <MovieIndex></MovieIndex>
-  )
-
+    <Router> 
+      <Routes>
+        <Route path="/" element={<MovieIndex/>}>
+          <Route path="/:episodeId" element={<MovieDetails/>} /> 
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
