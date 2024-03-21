@@ -18,33 +18,35 @@ async function getMovies() {
     // If movies are not in local storage, fetch them from the API.
     try {
         const data = await fetchMovies();
-        // Create promises for each movie to fetch its images and assemble movie objects.
-        const promises = data.map(async (movie) => {
+        // Initialize an empty array to hold the movie objects
+        results = [];
+        for (const movie of data) {
             try {
-                // Fetch the image URL for the movie.
                 const imgUrl = await fetchMovieImages(movie.title);
-                // Construct and return a movie object with relevant properties.
-                return {
+                // Construct and push the movie object into the results array
+                results.push({
                     imgUrl,
                     title: movie.title,
                     opening_crawl: movie.opening_crawl,
                     release_date: movie.release_date,
                     isFavorite: false,
                     episodeId: movie.episode_id,
-                };
+                });
+
+                // Wait for 10ms before proceeding to the next iteration to prevent error in the API
+                await new Promise(resolve => setTimeout(resolve, 10));
             } catch (error) {
                 console.error("Error fetching movie images:", error);
             }
-        });
-        // Wait for all movie image fetch promises to resolve and update the results.
-        results = await Promise.all(promises);
-        // Save the fetched movie data to local storage.
+        }
+
         _saveToStorage(MOVIE_DB, results);
         return results;
     } catch (error) {
         console.error("Error fetching movies from API:", error);
     }
 }
+
 
 function updateMovie(movie) {
     const movies = _loadFromStorage(MOVIE_DB)
