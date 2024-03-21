@@ -12,11 +12,10 @@ function MovieDetails({ movie, onFavoriteToggle, favorites }) {
         <button onClick={() => onFavoriteToggle(movie)}
         >
           {
-            favorites.some(fav => fav.episode_id === movie.episode_id) ? <StarSvg fill='white' /> : <StarSvg fill='none' />}
-
+            movie.isFavorite ? <StarSvg fill='white' /> : <StarSvg fill='none' />}
         </button>
       </div>
-      <p><strong>Episode:</strong> {movie.episode_id} </p>
+      <p><strong>Episode:</strong> {movie.episodeId} </p>
     </div>
   );
 }
