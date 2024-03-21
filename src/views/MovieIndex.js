@@ -8,7 +8,7 @@ import ThemeButton from "../components/ThemeButton/ThemeButton";
 import { useTheme } from "../hooks/useTheme";
 
 export const BackgroundTitleContext = createContext({
-    selectedMovieTitle: 'start',
+    selectedMovieTitle: 'stars',
     updateBackgroundImg: () => { }
 })
 
