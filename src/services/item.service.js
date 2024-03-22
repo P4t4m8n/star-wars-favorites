@@ -1,4 +1,4 @@
-import { fetchData, fetchMovieImages } from './api'
+import { fetchData, fetchItemImages, fetchMovieImages } from './api'
 import { utilService } from './util.service'
 
 export const FILM_DB = 'film' // Constant for the local storage key.
@@ -115,23 +115,32 @@ function getItemById(id) {
 //Asynchronously retrieves items base on items array in item
 async function _fetchItems(items, type) {
     try {
-        // Collect all the promises
-        const itemPromises = items.map(item => fetchData(item));
+        // Collect all the promises for the initial fetch
+        const itemPromises = items.map(item => fetchData(item))
         // Waiting for them to resolve
-        const itemObjArray = await Promise.all(itemPromises);
-        // Transform each item in the array and add an id, isFavorite and type
-        const transformedItemObjArray = itemObjArray.map((item, idx) => ({
-            ...item,
-            endPoint: items[idx],
-            id: utilService.makeId(),
-            isFavorite: false,
-            type
-        }));
-        return transformedItemObjArray;
+        const itemObjArray = await Promise.all(itemPromises)
+        // Collect promises for the transformation and fetching images
+        const transformationPromises = itemObjArray.map(async (item, idx) => {
+            try {
+                const imgUrl = await fetchItemImages(type, item.name)
+                return {
+                    ...item,
+                    endPoint: items[idx],
+                    id: utilService.makeId(),
+                    isFavorite: false,
+                    type,
+                    imgUrl
+                }
+            } catch (error) { throw error; }
+        })
+        // Await the transformation promises
+        const transformedItemObjArray = await Promise.all(transformationPromises)
+        return transformedItemObjArray
     } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error)
     }
 }
+
 
 //Clean array from duplication lazy soultion
 // function _removeDuplicatesByProperty(arr, propName) {

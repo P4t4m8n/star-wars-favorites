@@ -32,6 +32,32 @@ export const fetchMovieImages = async (movieName) => {
   }
 };
 
+export const fetchItemImages = async (type, itemName) => {
+  const changedName = itemName.replace(" ", "%20")
+  const UpdatedType = getTypeForUrl(type)
+  const url = `https://starwars-databank-server.vercel.app/api/v1/${UpdatedType}/name/${changedName}`
+  try {
+    const response = await axios.get(url)
+    return response.data[0]?.image || 'https://res.cloudinary.com/dpnevk8db/image/upload/v1711111515/Awesome_Star_Wars_Logo_Wallpapers_-_WallpaperAccess_zbkvzl.jpg'
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function getTypeForUrl(type) {
+  switch (type) {
+    case 'planet':
+      return 'locations'
+    case 'specie':
+      return 'species'
+    case 'starship':
+      return 'vehicles'
+    default:
+      return 'characters'
+
+  }
+}
+
 
 
 
