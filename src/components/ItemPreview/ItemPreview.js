@@ -15,7 +15,7 @@ function ItemPreview({ item }) {
   const { name, type } = item;
 
   return (
-    <li className={`${type}-preview ${flip ? 'flipped' : ''} ${currTheme}`} key={name}>
+    <li className={`item-preview ${flip ? 'flipped' : ''} ${currTheme}`} key={name}>
       <button className='flip-btn' onClick={toggleFlip}><FlipSvg /></button>
       <DynamicPreviewCmp item={item} cmpType={type} />
     </li>
