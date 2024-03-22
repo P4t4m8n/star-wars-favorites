@@ -22,11 +22,11 @@
     background-position: right bottom;
     transition: background-position 0.5s ease-out, color 1s 0.5s;
     background-clip: text;
-    font-size: 1.5rem;
+    font-size: var(--font-size-btn);
     line-height: 2;
     width: fit-content;
     height: fit-content;
-    border-radius: 12px;
+    border-radius:var(--border-radius-s);
 }
 
 .app-nav a:hover {
