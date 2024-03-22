@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create();
-const RAPID_KEY = '6c82988217msh8f39fa280af0c34p180759jsn2ae728cef461'
+const RAPID_KEY = '4df2ef2181msh75591dbcc080134p16287ejsn1217057be836'
 
 export const fetchData = async (url) => {
   const response = await api({
@@ -33,7 +33,7 @@ export const fetchMovieImages = async (movieName) => {
 };
 
 export const fetchItemImages = async (type, itemName) => {
-  const changedName = itemName.replace(" ", "%20")
+  const changedName = encodeURIComponent(itemName)
   const UpdatedType = getTypeForUrl(type)
   const url = `https://starwars-databank-server.vercel.app/api/v1/${UpdatedType}/name/${changedName}`
   try {

@@ -1,0 +1,17 @@
+.item-info {
+    width: 80vw;
+    justify-content: space-between;
+    padding-inline: 8px;
+}
+
+.item-info img {
+    width: 50%;
+    border-radius: 12px;
+}
+
+.modal-info {
+    width: 40%;
+    align-items: flex-start;
+    gap: 1em;
+
+}

@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { FlipSvg, StarSvg } from '../../services/icon.service';
 import { useParams } from 'react-router-dom';
 import { itemService } from '../../services/item.service';
 import Loading from '../Loading/Loading';
-import { useFlip } from '../../hooks/useFlip';
 import DetailsFilm from './DetailsFilm/DetailsFilm';
 import { useEffectUpdate } from '../../hooks/useEffectUpdate';
 import { theme } from '../../store/theme.store';
 import { useEntity } from 'simpler-state';
+import DetailsCharacter from './DetailsCharacter/DetailsCharacter';
+import DetailsPlanet from './DetailsPlanet/DetailsPlanet';
+import DetailsSpecie from './DetailsSpecie/DetailsSpecie';
+import DetailsStarship from './DetailsStarship/DetailsStarship';
 
 function ItemDetails() {
   const [item, setItem] = useState(null)
   const { id } = useParams()
-  const [flip, toggleFlip] = useFlip();
   const currTheme = useEntity(theme)
   useEffectUpdate(loadItem, [id], { id })
 
@@ -21,21 +22,10 @@ function ItemDetails() {
     setItem(_item)
   }
 
-  const handleFavorite = (item) => {
-    item.isFavorite = !item.isFavorite
-    const updatedItem = itemService.updateItem(item)
-    setItem({ ...updatedItem })
-  }
-
   if (!item) return <Loading message='Loading Movie' />
-  const { type } = item
   return (
-    <div className={`${type}-details flex ${flip ? 'flipped' : ''} ${currTheme} `}>
-      <button className='flip-btn' onClick={toggleFlip}><FlipSvg /></button>
-      <button onClick={() => handleFavorite(item)}          >
-        {item.isFavorite ? <StarSvg fill='white' /> : <StarSvg fill='none' />}
-      </button>
-      <DynamicDetailsCmp item={item} cmdType={item.type} />
+    <div className={`item-details grid ${currTheme} `}>
+      <DynamicDetailsCmp item={item} cmpType={item.type} />
     </div>
   )
 }
@@ -43,6 +33,14 @@ function ItemDetails() {
 function DynamicDetailsCmp(props) {
 
   switch (props.cmpType) {
+    case 'character':
+      return <DetailsCharacter {...props} />
+    case 'planet':
+      return <DetailsPlanet {...props} />
+    case 'specie':
+      return <DetailsSpecie {...props} />
+    case 'starship':
+      return <DetailsStarship {...props} />
     default:
       return <DetailsFilm {...props} />
   }

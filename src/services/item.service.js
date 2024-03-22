@@ -12,7 +12,8 @@ export const itemService = {
     makeData,
     updateItem,
     getItemById,
-    getItems
+    getItems,
+    fixAttribute
 }
 function getItems(itemType) {
     const items = _loadFromStorage(itemType)
@@ -45,18 +46,15 @@ async function makeData() {
                 const starships = await _fetchItems(item.starships, 'starship')
                 // Construct and push the item object into the results array
                 results.push({
+                    ...item,
                     imgUrl,
                     name: item.title,
                     opening_crawl: item.opening_crawl,
                     release_date: item.release_date,
                     isFavorite: false,
                     id: utilService.makeId(),
-                    endPoint: BASE_API_URL + 'films/' + item.episode_id,
+                    endPoint: BASE_API_URL + 'films/' + item.episode_id + '/',
                     episodeNumber: item.episode_id,
-                    species,
-                    planets,
-                    characters,
-                    starships,
                     type: 'film'
                 })
 
@@ -73,16 +71,20 @@ async function makeData() {
         }
 
         //Clean array from duplications
-        const fixCharactersDb = _removeDuplicatesByProperty(charactersDb, 'name')
-        const fixPlanetsDb = _removeDuplicatesByProperty(planetsDb, 'name')
-        const fixSpeciesDb = _removeDuplicatesByProperty(speciesDb, 'name')
-        const fixStarshipsDb = _removeDuplicatesByProperty(starshipsDb, 'name')
+        let fixCharactersDb = _removeDuplicatesByProperty(charactersDb, 'name')
+        let fixPlanetsDb = _removeDuplicatesByProperty(planetsDb, 'name')
+        let fixSpeciesDb = _removeDuplicatesByProperty(speciesDb, 'name')
+        let fixStarshipsDb = _removeDuplicatesByProperty(starshipsDb, 'name')
+
 
         _saveToStorage(FILM_DB, results)
         _saveToStorage(CHARACTERS_DB, fixCharactersDb)
         _saveToStorage(PLANETS_DB, fixPlanetsDb)
         _saveToStorage(SPECIES_DB, fixSpeciesDb)
         _saveToStorage(STARSHIPS_DB, fixStarshipsDb)
+
+        fixAttribute()
+
 
     } catch (error) {
         console.error("Error fetching items from API:", error)
@@ -105,15 +107,31 @@ function getItemById(id) {
     // Loop through each database and search for the item
     for (let i = 0; i < dbs.length && !foundItem; i++) {
         const items = JSON.parse(localStorage.getItem(dbs[i])) || []
-        foundItem = items.find(item => item.id === id)
+        foundItem = items.find(item => {
+            return item.id === id
+        })
     }
     if (!foundItem) {
-        throw new Error('Unable to find item')
+        console.error(`Unable to find item ${id}`)
     }
     return foundItem
 }
 
+function getItemIdByUrl(type, url) {
+    const items = _loadFromStorage(type)
+    const item = items.find(_item => {
+        return _item.endPoint === url
+    })
+    if (!item || !item.id) {
+        console.error('Item or item.id not found for url:', url.item);
+        return null
+    }
+    return item.id
+}
+
 //Asynchronously retrieves items base on items array in item
+
+
 async function _fetchItems(items, type) {
     try {
         // Collect all the promises for the initial fetch
@@ -124,13 +142,14 @@ async function _fetchItems(items, type) {
         const transformationPromises = itemObjArray.map(async (item, idx) => {
             try {
                 const imgUrl = await fetchItemImages(type, item.name)
+
                 return {
                     ...item,
                     endPoint: items[idx],
                     id: utilService.makeId(),
                     isFavorite: false,
                     type,
-                    imgUrl
+                    imgUrl,
                 }
             } catch (error) { throw error; }
         })
@@ -141,7 +160,6 @@ async function _fetchItems(items, type) {
         console.error("Error fetching data:", error)
     }
 }
-
 
 //Clean array from duplication lazy soultion
 // function _removeDuplicatesByProperty(arr, propName) {
@@ -172,3 +190,64 @@ function _loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return data ? JSON.parse(data) : undefined
 }
+
+function fixAttribute() {
+    const dbs = [PLANETS_DB, SPECIES_DB, STARSHIPS_DB, CHARACTERS_DB,FILM_DB]
+
+    dbs.forEach(db => {
+        const items = _loadFromStorage(db)
+        const updatedItems = items.map(item => {
+
+            let films = []
+            let characters = []
+            let planets = []
+            let species = []
+            let starships = []
+
+            if (item.characters && item.characters.length > 0) {
+                characters = item.characters.map(character => getItemIdByUrl(CHARACTERS_DB, character))
+            }
+            if (item.pilots && item.pilots.length > 0) {
+                characters = item.pilots.map(item => getItemIdByUrl(CHARACTERS_DB, item))
+                delete item.pilots;
+            }
+            if (item.people && item.people.length > 0) {
+                characters = item.people.map(item => getItemIdByUrl(CHARACTERS_DB, item))
+                delete item.people;
+            }
+            if (item.planets && item.planets.length > 0) {
+                planets = item.planets.map(planet => getItemIdByUrl(PLANETS_DB, planet))
+            }
+
+            if (item.homeworld) {
+                item.homeworld = getItemIdByUrl(PLANETS_DB, item.homeworld)
+            }
+            if (item.species && item.species.length > 0)
+                species = item.species.map(specie => getItemIdByUrl(SPECIES_DB, specie))
+
+            if (item.starships && item.starships.length > 0)
+                starships = item.starships.map(starship => getItemIdByUrl(STARSHIPS_DB, starship))
+
+            if (item.films && item.films.length > 0) {
+                films = item.films.map(film => getItemIdByUrl(FILM_DB, film))
+            }
+
+            if (item.residents && item.residents.length > 0) {
+                characters = item.residents.map(item => getItemIdByUrl(CHARACTERS_DB, item))
+                delete item.residents
+            }
+
+            return {
+                ...item,
+                films,
+                characters,
+                planets,
+                species,
+                starships,
+            }
+        })
+
+        _saveToStorage(db, updatedItems)
+    })
+}
+

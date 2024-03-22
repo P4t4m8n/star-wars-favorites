@@ -1,0 +1,72 @@
+.item-details {
+    background-color: var(--background-color);
+}
+
+.item-details:hover {
+    cursor: pointer;
+}
+
+.item-details-list img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-list-container {
+    padding: 8px 4px 8px 4px;
+    min-width: 10em;
+    max-width: 25em;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    height: 13em;
+    gap: .5em;
+    align-items: flex-start;
+    border-radius: var(--border-radius-s);
+    background-color: var(--overlay-color)
+}
+
+.details-list-container h3 {
+    padding-left: 8px;
+}
+
+.details-list {
+    gap: 1em;
+    width: 100%;
+    overflow-x: hidden;
+    padding-inline: 4px;
+    justify-content: center;
+
+}
+
+.details-item-list {
+    width: 3.5em;
+
+}
+
+.details-item-list:hover h5 {
+    color: var(--hover-link-color)
+}
+
+.details-item-list h5 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 3em;
+    width: 100%;
+    text-align: center;
+    color: var(--link-color);
+    font-size: .7rem;
+    line-height: 1.5em;
+}
+
+.details-item-list a img {
+    border-radius: 100%;
+    height: 3rem;
+    width: 3em;
+    object-fit: cover;
+}
+
+.pagination {
+    width: 100%;
+    justify-content: center;
+}

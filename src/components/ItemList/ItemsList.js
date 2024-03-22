@@ -4,6 +4,7 @@ import ItemPreview from '../ItemPreview/ItemPreview';
 
 function ItemsList({ items }) {
 
+  
   return (
     <ul className='item-list flex'>
       {

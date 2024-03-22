@@ -16,7 +16,9 @@ function Home() {
       await itemService.makeData()
     } catch (error) {
       console.error("Unable to make data:", error)
-    } finally { toggleLoading() }
+    } finally {
+      toggleLoading()
+    }
   }
 
   if (isLoading) return (<Loading />)

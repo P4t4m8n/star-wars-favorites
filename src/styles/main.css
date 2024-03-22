@@ -14,6 +14,7 @@
 /* Cmps */
 @import './cmps/Film/FilmPreview.css';
 @import './cmps/Film/FilmDetails.css';
+@import './cmps/Film/ModalInfo.css';
 
 @import './cmps/Character/CharacterPreview.css';
 @import './cmps/Character/CharacterDetails.css';
@@ -28,6 +29,9 @@
 @import './cmps/Planet/PlanetDetails.css';
 
 @import './cmps/ItemList.css';
+@import './cmps/ItemDetails.css';
 @import './cmps/ItemPreview.css';
 @import './cmps/ThemeButton.css';
 @import './cmps/Navbar.css';
+@import './cmps/FavoriteButton.css';
+@import './cmps/DetailsModal.css';

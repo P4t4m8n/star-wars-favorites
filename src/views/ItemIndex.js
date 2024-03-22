@@ -25,6 +25,7 @@ function ItemIndex() {
             console.error("Failed fetching movies:", error);
         }
     }
+    console.log('t')
 
     if (!items) return <Loading message="Loading Movies..." />
 
