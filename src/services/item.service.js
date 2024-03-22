@@ -52,6 +52,7 @@ async function makeData() {
                     isFavorite: false,
                     id: utilService.makeId(),
                     endPoint: BASE_API_URL + 'films/' + item.episode_id,
+                    episodeNumber: item.episode_id,
                     species,
                     planets,
                     characters,

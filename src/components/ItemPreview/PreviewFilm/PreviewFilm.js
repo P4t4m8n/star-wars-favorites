@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 function PreviewFilm({ item }) {
-    const { imgUrl, name, id, release_date } = item
+    const { imgUrl, name, id, release_date, episodeNumber } = item
 
     function convertToLocalDate(dateString) {
         const date = new Date(dateString)
@@ -18,7 +18,7 @@ function PreviewFilm({ item }) {
             <div className='film-preview-back flex flex-column'>
                 <h2>{name}</h2>
                 <h3>Release Date:{localDate}</h3>
-                <h4>Episode Number: {id || ''}</h4>
+                <h4>Episode Number: {episodeNumber}</h4>
             </div>
         </>
     )

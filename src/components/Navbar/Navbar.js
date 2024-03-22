@@ -15,6 +15,7 @@ function Navbar() {
                 <NavLink to={"/character"}>Characters</NavLink>
                 <NavLink to={"/specie"}>Species</NavLink>
                 <NavLink to={"/starship"}>Starships</NavLink>
+                <NavLink to={"/planet"}>Planets</NavLink>
             </nav>
         </section>
     )
