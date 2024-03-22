@@ -23,11 +23,11 @@ async function makeData() {
     // Attempt to load items from local storage.
     let results = _loadFromStorage(FILM_DB)
     // If items exist in local storage, return them to avoid unnecessary API calls.
-    if (results && results.length > 0) return 
+    if (results && results.length > 0) return
     // If items are not in local storage, fetch them from the API.
     try {
         const data = await fetchData(BASE_API_URL + 'films/')
-        // Initialize an empty array to hold the item objects
+        // Initialize an empty arrays to hold the items objects
         results = []
         let charactersDb = []
         let planetsDb = []
@@ -35,7 +35,10 @@ async function makeData() {
         let starshipsDb = []
         for (const item of data.results) {
             try {
+                //Fetch file imgaes
                 const imgUrl = await fetchMovieImages(item.title)
+
+                //Fetch all related data to a films return a Array of objects
                 const characters = await _fetchItems(item.characters, 'character')
                 const planets = await _fetchItems(item.planets, 'planet')
                 const species = await _fetchItems(item.species, 'specie')
@@ -48,9 +51,14 @@ async function makeData() {
                     release_date: item.release_date,
                     isFavorite: false,
                     id: item.episode_id,
+                    species,
+                    planets,
                     characters,
+                    starships,
                     type: 'film'
                 })
+
+                //Add fetched data into array
                 charactersDb.push(...characters)
                 planetsDb.push(...planets)
                 speciesDb.push(...species)
@@ -62,6 +70,7 @@ async function makeData() {
             }
         }
 
+        //Clean array from duplications
         const fixCharactersDb = _removeDuplicatesByProperty(charactersDb, 'name')
         const fixPlanetsDb = _removeDuplicatesByProperty(planetsDb, 'name')
         const fixSpeciesDb = _removeDuplicatesByProperty(speciesDb, 'name')
@@ -95,6 +104,16 @@ function getItemById(itemType, id) {
     return item
 }
 
+function getItemByName(type, name) {
+    const items = _loadFromStorage(type)
+    const item = items.find(item => {
+        return item.name === +name
+    })
+    if (!item) return new Error('Unable to find item')
+    return item
+}
+
+
 //Asynchronously retrieves items base on items array in item
 async function _fetchItems(items, type) {
     try {
@@ -102,7 +121,7 @@ async function _fetchItems(items, type) {
         const itemPromises = items.map(item => fetchData(item));
         // Waiting for them to resolve
         const itemObjArray = await Promise.all(itemPromises);
-        // Transform each item in the array and add an id
+        // Transform each item in the array and add an id, isFavorite and type
         const transformedItemObjArray = itemObjArray.map((item, idx) => ({
             ...item,
             id: items[idx].charAt(items[idx].length - 2),
@@ -115,22 +134,26 @@ async function _fetchItems(items, type) {
     }
 }
 
-//Clean array from duplication
-function _removeDuplicatesByProperty(arr, propName) {
-    return arr.filter((item, index, self) =>
-        index === self.findIndex((t) => (
-            t[propName] === item[propName]
-        ))
-    );
-}
+//Clean array from duplication lazy soultion
+// function _removeDuplicatesByProperty(arr, propName) {
+//     return arr.filter((item, index, self) =>
+//         index === self.findIndex((t) => (
+//             t[propName] === item[propName]
+//         ))
+//     )
+// }
 
-function getItemByName(type, name) {
-    const items = _loadFromStorage(type)
-    const item = items.find(item => {
-        return item.name === +name
-    })
-    if (!item) return new Error('Unable to find item')
-    return item
+//More Efficent soultion
+function _removeDuplicatesByProperty(arr, propName) {
+    const hashMap = {}
+    const result = []
+    for (const item of arr) {
+        if (!hashMap.hasOwnProperty(item[propName])) {
+            hashMap[item[propName]] = true
+            result.push(item)
+        }
+    }
+    return result
 }
 
 function _saveToStorage(key, value) {
