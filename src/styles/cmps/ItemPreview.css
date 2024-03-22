@@ -1,0 +1,106 @@
+.item-preview {
+    height: 13em;
+    border-radius: 12px;
+    width: 13em;
+    position: relative;
+    transition: transform 0.3s;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+    will-change: transform;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid transparent;
+}
+
+.item-preview img {
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-preview a {
+    position: absolute;
+    width: 100%;
+    color: var(--link-color);
+    z-index: 10;
+    text-align: center;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-inline: 2px;
+    border-radius: var(--border-radius-s);
+    text-shadow: 2px 2px 4px var(--overlay-color);
+    transition: color 0.5s ease-in-out;
+}
+
+.item-preview a::before {
+    border-radius: 12px;
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    right: 0;
+    bottom: -50%;
+    background: radial-gradient(circle, var(--overlay-color) 0%, transparent 70%);
+    border-radius: 12px;
+    z-index: -1;
+}
+
+.item-preview,
+.item-preview a:hover {
+    cursor: pointer;
+}
+
+.item-preview a:hover {
+    color: var(--hover-link-color);
+}
+
+.item-preview:hover {
+    border: 1px solid var(--link-color);
+}
+
+.item-preview button {
+    color: var(--button);
+}
+
+
+
+.item-preview-back h2,
+h3,
+h4 {
+    text-align: center;
+    color: var(--button-bg-color);
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.flip-btn {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    width: 2em;
+    height: 2em;
+    z-index: 5;
+}
+
+.flip-btn:hover {
+    svg {
+
+        fill: var(--link-color);
+        stroke: var(--link-color);
+    }
+}
+
+.flipped .flip-btn {
+    right: 85%;
+
+}
+
+.flip-btn svg {
+    width: inherit;
+    height: inherit;
+}

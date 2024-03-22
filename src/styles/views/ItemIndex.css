@@ -1,21 +1,17 @@
 .app {
-  box-sizing: border-box;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: var(--background-color);
   align-items: center;
   position: relative;
   z-index: 0;
   gap: 1em;
-  min-height: 100vh;
-  height: 100%;
-  max-width: 79.8vw;
-  /* width: 100%; */
+  width: 80vw;
   border-radius: 12px;
   justify-content: center;
   border: 2px solid var(--link-color);
+  overflow-x: hidden;
 }
 
-.app::before {
+/* .app::before {
   content: "";
   position: absolute;
   left: 0;
@@ -27,7 +23,7 @@
   background-image: inherit;
   filter: blur(4px);
   z-index: -1;
-}
+} */
 
 /* //? */
 /* .App-logo {

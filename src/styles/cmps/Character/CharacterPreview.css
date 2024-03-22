@@ -1,5 +1,5 @@
-.film-preview-front,
-.film-preview-back { 
+.character-preview-front,
+.character-preview-back { 
     position: absolute;
     top: 0;
     left: 0;
@@ -11,21 +11,20 @@
     border-radius: 12px;
 }
 
-.film-preview-front {
+.character-preview-front {
     z-index: 2;
 }
 
-.film-preview-back {
+.character-preview-back {
     transform: rotateY(180deg);
     z-index: 1;
     background-color: var(--card-bg-color);
     padding: 16px 8px 4px 8px;
     justify-content: space-around;
 }
-.film-preview-back h2,
+.character-preview-back h2,
 h3,
 h4 {
     text-align: center;
     color: var(--button-bg-color);
 }
-

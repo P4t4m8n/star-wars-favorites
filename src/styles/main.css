@@ -2,6 +2,7 @@
 @import './base/base.css';
 @import './base/helpers.css';
 @import './base/layout.css';
+@import './base/scrollbar.css';
 
 /* Setup */
 @import './setup/vars.css';
@@ -13,6 +14,20 @@
 /* Cmps */
 @import './cmps/Film/FilmPreview.css';
 @import './cmps/Film/FilmDetails.css';
+
+@import './cmps/Character/CharacterPreview.css';
+@import './cmps/Character/CharacterDetails.css';
+
+@import './cmps/Specie/SpeciesPreview.css';
+@import './cmps/Specie/SpeciesDetails.css';
+
+@import './cmps/Starship/StarshipsPreview.css';
+@import './cmps/Starship/StarshipsDetails.css';
+
+@import './cmps/Planet/PlanetPreview.css';
+@import './cmps/Planet/PlanetDetails.css';
+
 @import './cmps/ItemList.css';
+@import './cmps/ItemPreview.css';
 @import './cmps/ThemeButton.css';
 @import './cmps/Navbar.css';
