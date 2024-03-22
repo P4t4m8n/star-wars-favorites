@@ -2,7 +2,7 @@ import React from 'react';
 import ItemPreview from '../ItemPreview/ItemPreview';
 
 
-function ItemsList({ onItemSelect, items }) {
+function ItemsList({ items }) {
 
   return (
     <ul className='item-list flex'>
@@ -11,7 +11,7 @@ function ItemsList({ onItemSelect, items }) {
           <ItemPreview
             key={item.name}
             item={item}
-            onItemSelect={onItemSelect} />
+          />
         ))
 
       }

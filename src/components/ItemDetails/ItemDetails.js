@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { FlipSvg, StarSvg } from '../../services/icon.service';
 import { useParams } from 'react-router-dom';
-import { movieService } from '../../services/movie.service';
+import {  itemService } from '../../services/item.service';
 import Loading from '../Loading/Loading';
 import { BackgroundItemContext } from '../../views/ItemIndex';
 import { useTheme } from '../../hooks/useTheme';
@@ -28,7 +28,7 @@ function ItemDetails() {
   }
 
   function loadItem(id) {
-    const _item = movieService.getMovie(id)
+    const _item = itemService.getMovie(id)
     setItem(_item)
     return _item
   }
@@ -43,7 +43,7 @@ function ItemDetails() {
 
   const handleFavorite = (movie) => {
     movie.isFavorite = !movie.isFavorite
-    const updatedMovie = movieService.updateMovie(movie)
+    const updatedMovie = itemService.updateMovie(movie)
     setItem({ ...updatedMovie })
   };
 

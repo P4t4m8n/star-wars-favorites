@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import Loading from "../components/Loading/Loading";
-import MovieList from "../components/ItemList/ItemsList";
-import { movieService } from "../services/movie.service";
+import ItemsList from "../components/ItemList/ItemsList";
+import { itemService } from "../services/item.service";
 import { useEffectUpdate } from "../hooks/useEffectUpdate";
 import { Outlet, useLocation } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
@@ -15,16 +15,18 @@ function ItemIndex() {
 
     const [items, setItems] = useState(null)
     const [backgroundImg, setBackgroundImg] = useState('stars')
-    useEffectUpdate(loadItems, [])
     const location = useLocation()
     const itemType = location.pathname
-    console.log("itemType:", itemType)
+    useEffectUpdate(loadItems, [], { itemType })
     const { theme } = useTheme()
 
-    async function loadItems() {
+    async function loadItems({ itemType }) {
+        const type = itemType.substring(1)
         try {
-            const movies = await movieService.getMovies()
-            setItems(movies)
+            let _items = await itemService.getItems(type)
+            if (!_items) await itemService.makeData()
+            _items = await itemService.getItems(type)
+            setItems(_items)
         } catch (error) {
             console.error("Failed fetching movies:", error);
         }
@@ -41,7 +43,7 @@ function ItemIndex() {
             <BackgroundItemContext.Provider value={{ selectedItemName: backgroundImg, updateBackgroundImg }} >
                 <Outlet />
             </BackgroundItemContext.Provider>
-            <MovieList items={items} />
+            <ItemsList items={items} />
         </section>
     )
 }
