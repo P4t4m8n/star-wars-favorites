@@ -1,10 +1,10 @@
 import React from 'react'
-import { useTheme } from '../../hooks/useTheme'
+import { useEntity } from 'simpler-state'
+import { theme, toggleTheme } from '../../store/theme.store'
 
 function ThemeButton() {
-    const { toggleTheme, theme } = useTheme()
-
-    return <button className='theme-btn' onClick={toggleTheme}>{theme}</button>
+    const currTheme = useEntity(theme)
+    return <button className='theme-btn' onClick={toggleTheme}>{currTheme}</button>
 }
 
 export default ThemeButton

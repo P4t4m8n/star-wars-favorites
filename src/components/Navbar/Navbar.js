@@ -1,18 +1,20 @@
 import { NavLink } from "react-router-dom"
 import ThemeButton from "../ThemeButton/ThemeButton"
-import { useTheme } from "../../hooks/useTheme"
+import { useEntity } from "simpler-state"
+import { theme } from "../../store/theme.store"
 
 function Navbar() {
-    const { theme } = useTheme()
+    const currTheme = useEntity(theme)
+
     return (
-        <section className={"navbar " + theme}>
+        <section className={"navbar " + currTheme}>
             <ThemeButton />
             <nav className="app-nav flex flex-column">
                 <NavLink to={"/"}>Home</NavLink>
-                <NavLink to={"/films"}>Films</NavLink>
-                <NavLink to={"/characters"}>Characters</NavLink>
-                <NavLink to={"/species"}>Species</NavLink>
-                <NavLink to={"/starships"}>Starships</NavLink>
+                <NavLink to={"/film"}>Films</NavLink>
+                <NavLink to={"/character"}>Characters</NavLink>
+                <NavLink to={"/specie"}>Species</NavLink>
+                <NavLink to={"/starship"}>Starships</NavLink>
             </nav>
         </section>
     )

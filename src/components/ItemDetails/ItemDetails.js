@@ -1,79 +1,51 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { FlipSvg, StarSvg } from '../../services/icon.service';
 import { useParams } from 'react-router-dom';
-import {  itemService } from '../../services/item.service';
+import { itemService } from '../../services/item.service';
 import Loading from '../Loading/Loading';
-import { BackgroundItemContext } from '../../views/ItemIndex';
-import { useTheme } from '../../hooks/useTheme';
 import { useFlip } from '../../hooks/useFlip';
+import DetailsFilm from './DetailsFilm/DetailsFilm';
+import { useEffectUpdate } from '../../hooks/useEffectUpdate';
+import { theme } from '../../store/theme.store';
+import { useEntity } from 'simpler-state';
 
 function ItemDetails() {
   const [item, setItem] = useState(null)
   const { id } = useParams()
-  const { theme } = useTheme()
   const [flip, toggleFlip] = useFlip();
-  const elRef = useRef()
+  const currTheme = useEntity(theme)
+  useEffectUpdate(loadItem, [id], { id })
 
-  const { updateBackgroundImg } = useContext(BackgroundItemContext)
-
-  useEffect(() => {
-    loadPage(id)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id])
-
-  function loadPage(id) {
-    const _item = loadItem(id)
-    updateBackgroundImg(_item.name)
-    startAnimation()
-  }
-
-  function loadItem(id) {
-    const _item = itemService.getMovie(id)
+  function loadItem({ id }) {
+    const _item = itemService.getItemById(id)
     setItem(_item)
-    return _item
   }
 
-  function startAnimation() {
-    const element = elRef.current;
-    if (!element) return
-    element.style.animation = 'none';
-    void element.offsetWidth;
-    element.style.animation = '';
+  const handleFavorite = (item) => {
+    item.isFavorite = !item.isFavorite
+    const updatedItem = itemService.updateItem(item)
+    setItem({ ...updatedItem })
   }
-
-  const handleFavorite = (movie) => {
-    movie.isFavorite = !movie.isFavorite
-    const updatedMovie = itemService.updateMovie(movie)
-    setItem({ ...updatedMovie })
-  };
 
   if (!item) return <Loading message='Loading Movie' />
-
+  const { type } = item
   return (
-    <div className={`movie-details flex ${flip ? 'flipped' : ''} ${theme} `}>
+    <div className={`${type}-details flex ${flip ? 'flipped' : ''} ${currTheme} `}>
       <button className='flip-btn' onClick={toggleFlip}><FlipSvg /></button>
-      <div className='movie-details-front'>
-        <img src={item.imgUrl} alt=''></img>
-        <div className='movie-info'>
-          <h2>{item.name}</h2>
-          <button onClick={() => handleFavorite(item)}
-          >
-            {
-              item.isFavorite ? <StarSvg fill='white' /> : <StarSvg fill='none' />}
-          </button>
-        </div>
-        <div className='opening_crawl'>
-          <p ref={elRef} className='scroll-text'>
-            {item.opening_crawl || ''}
-          </p>
-        </div>
-      </div>
-
-      <div className='movie-details-front'>
-
-      </div>
+      <button onClick={() => handleFavorite(item)}          >
+        {item.isFavorite ? <StarSvg fill='white' /> : <StarSvg fill='none' />}
+      </button>
+      <DynamicDetailsCmp item={item} cmdType={item.type} />
     </div>
-  );
+  )
 }
 
-export default ItemDetails;
+function DynamicDetailsCmp(props) {
+
+  switch (props.cmpType) {
+    default:
+      return <DetailsFilm {...props} />
+  }
+}
+
+export default ItemDetails

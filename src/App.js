@@ -11,29 +11,29 @@ function App() {
   return (
     <ThemeProvider>
       <section className='main grid'>
-          <Router>
-        <LoadingProvider>
-          <Navbar />
+        <Router>
+          <LoadingProvider>
+            <Navbar />
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route path="/films" element={<ItemIndex />}>
-                <Route path=":id" element={<ItemDetails />} />
-              </Route>
-              <Route path="/characters" element={<ItemIndex />}>
-                <Route path=":id" element={<ItemDetails />} />
-              </Route>
-              <Route path="/planets" element={<ItemIndex />}>
-                <Route path=":id" element={<ItemDetails />} />
-              </Route>
-              <Route path="/species" element={<ItemIndex />}>
-                <Route path=":id" element={<ItemDetails />} />
-              </Route>
-              <Route path="/starships" element={<ItemIndex />}>
-                <Route path=":id" element={<ItemDetails />} />
-              </Route>
+              <Route path="/film" element={<ItemIndex />} />
+              <Route path="/film/:id" element={<ItemDetails />} />
+
+              <Route path="/character" element={<ItemIndex />} />
+              <Route path="/character/:id" element={<ItemDetails />} />
+
+              <Route path="/planet" element={<ItemIndex />} />
+              <Route path="/planet/:id" element={<ItemDetails />} />
+
+              <Route path="/specie" element={<ItemIndex />} />
+              <Route path="/specie/:id" element={<ItemDetails />} />
+
+              <Route path="/starship" element={<ItemIndex />} />
+              <Route path="/starship/:id" element={<ItemDetails />} />
+
             </Routes>
-        </LoadingProvider>
-          </Router>
+          </LoadingProvider>
+        </Router>
       </section>
     </ThemeProvider>
   );

@@ -1,17 +1,17 @@
 import { fetchData, fetchMovieImages } from './api'
+import { utilService } from './util.service'
 
-export const FILM_DB = 'films' // Constant for the local storage key.
-export const PLANETS_DB = 'planets' // Constant for the local storage key.
-export const SPECIES_DB = 'species' // Constant for the local storage key.
-export const STARSHIPS_DB = 'starships' // Constant for the local storage key.
-export const CHARACTERS_DB = 'characters' // Constant for the local storage key.
+export const FILM_DB = 'film' // Constant for the local storage key.
+export const PLANETS_DB = 'planet' // Constant for the local storage key.
+export const SPECIES_DB = 'specie' // Constant for the local storage key.
+export const STARSHIPS_DB = 'starship' // Constant for the local storage key.
+export const CHARACTERS_DB = 'character' // Constant for the local storage key.
 export const BASE_API_URL = 'https://swapi.dev/api/'//Constant for main api url
 
 export const itemService = {
     makeData,
     updateItem,
     getItemById,
-    getItemByName,
     getItems
 }
 function getItems(itemType) {
@@ -50,7 +50,8 @@ async function makeData() {
                     opening_crawl: item.opening_crawl,
                     release_date: item.release_date,
                     isFavorite: false,
-                    id: item.episode_id,
+                    id: utilService.makeId(),
+                    endPoint: BASE_API_URL + 'films/' + item.episode_id,
                     species,
                     planets,
                     characters,
@@ -88,31 +89,28 @@ async function makeData() {
 }
 
 function updateItem(item) {
-    const items = _loadFromStorage(FILM_DB)
-    const idx = items.findIndex(_item => _item.episodeId === item.episodeId)
+    const items = _loadFromStorage(item.type)
+    const idx = items.findIndex(_item => _item.id === item.id)
     if (idx < 0) return new Error('Unable to find item to Update')
     items.splice(idx, 1, item)
-    _saveToStorage(FILM_DB, items)
+    _saveToStorage(item.type, items)
     return item
 }
 
-function getItemById(itemType, id) {
-    const items = _loadFromStorage(itemType)
-    const item = items[id - 1]
-
-    if (!item) return new Error('Unable to find item')
-    return item
+//Lazy search function
+function getItemById(id) {
+    const dbs = [FILM_DB, PLANETS_DB, SPECIES_DB, STARSHIPS_DB, CHARACTERS_DB]
+    let foundItem = null
+    // Loop through each database and search for the item
+    for (let i = 0; i < dbs.length && !foundItem; i++) {
+        const items = JSON.parse(localStorage.getItem(dbs[i])) || []
+        foundItem = items.find(item => item.id === id)
+    }
+    if (!foundItem) {
+        throw new Error('Unable to find item')
+    }
+    return foundItem
 }
-
-function getItemByName(type, name) {
-    const items = _loadFromStorage(type)
-    const item = items.find(item => {
-        return item.name === +name
-    })
-    if (!item) return new Error('Unable to find item')
-    return item
-}
-
 
 //Asynchronously retrieves items base on items array in item
 async function _fetchItems(items, type) {
@@ -124,7 +122,8 @@ async function _fetchItems(items, type) {
         // Transform each item in the array and add an id, isFavorite and type
         const transformedItemObjArray = itemObjArray.map((item, idx) => ({
             ...item,
-            id: items[idx].charAt(items[idx].length - 2),
+            endPoint: items[idx],
+            id: utilService.makeId(),
             isFavorite: false,
             type
         }));
@@ -142,8 +141,7 @@ async function _fetchItems(items, type) {
 //         ))
 //     )
 // }
-
-//More Efficent soultion
+//Clean array from duplication More Efficent soultion
 function _removeDuplicatesByProperty(arr, propName) {
     const hashMap = {}
     const result = []

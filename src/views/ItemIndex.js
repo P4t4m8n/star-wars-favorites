@@ -1,24 +1,19 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
 import Loading from "../components/Loading/Loading";
 import ItemsList from "../components/ItemList/ItemsList";
 import { itemService } from "../services/item.service";
 import { useEffectUpdate } from "../hooks/useEffectUpdate";
-import { Outlet, useLocation } from "react-router-dom";
-import { useTheme } from "../hooks/useTheme";
-
-export const BackgroundItemContext = createContext({
-    selectedItemName: 'stars',
-    updateBackgroundImg: () => { }
-})
+import { useLocation } from "react-router-dom";
+import { theme } from "../store/theme.store";
+import { useEntity } from "simpler-state";
 
 function ItemIndex() {
 
     const [items, setItems] = useState(null)
-    const [backgroundImg, setBackgroundImg] = useState('stars')
     const location = useLocation()
     const itemType = location.pathname.substring(1)
     useEffectUpdate(loadItems, [], { itemType })
-    const { theme } = useTheme()
+    const currTheme = useEntity(theme)
 
     async function loadItems({ itemType }) {
         try {
@@ -31,17 +26,10 @@ function ItemIndex() {
         }
     }
 
-    const updateBackgroundImg = (newName) => {
-        setBackgroundImg(newName);
-    }
-
     if (!items) return <Loading message="Loading Movies..." />
 
     return (
-        <section className={`app flex flex-column ${theme}`} style={{ backgroundImage: `url('/imgs/${backgroundImg}.jpg')` }}>
-            <BackgroundItemContext.Provider value={{ selectedItemName: backgroundImg, updateBackgroundImg }} >
-                <Outlet />
-            </BackgroundItemContext.Provider>
+        <section className={`app flex flex-column ${currTheme}`} >
             <ItemsList items={items} />
         </section>
     )
