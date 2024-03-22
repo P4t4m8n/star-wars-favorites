@@ -3,13 +3,12 @@ import axios from 'axios';
 const api = axios.create();
 const RAPID_KEY = '6c82988217msh8f39fa280af0c34p180759jsn2ae728cef461'
 
-export const fetchMovies = async () => {
-  const url = 'https://swapi.dev/api/films/'
+export const fetchData = async (url) => {
   const response = await api({
     url,
     method: 'GET'
   });
-  return response.data.results;
+  return response.data;
 };
 
 export const fetchMovieImages = async (movieName) => {

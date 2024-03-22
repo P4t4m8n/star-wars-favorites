@@ -1,12 +1,14 @@
 /* Base */
 @import './base/base.css';
 @import './base/helpers.css';
+@import './base/layout.css';
 
 /* Setup */
 @import './setup/vars.css';
 
 /* Views */
 @import './views/MovieIndex.css';
+@import './views/Home.css';
 
 /* Cmps */
 @import './cmps/MovieItem.css';
