@@ -12,7 +12,7 @@ function ItemIndex() {
     const [items, setItems] = useState(null)
     const location = useLocation()
     const itemType = location.pathname.substring(1)
-    useEffectUpdate(loadItems, [], { itemType })
+    useEffectUpdate(loadItems, [itemType], { itemType })
     const currTheme = useEntity(theme)
 
     async function loadItems({ itemType }) {
