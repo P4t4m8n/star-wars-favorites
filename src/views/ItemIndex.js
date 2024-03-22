@@ -16,16 +16,15 @@ function ItemIndex() {
     const [items, setItems] = useState(null)
     const [backgroundImg, setBackgroundImg] = useState('stars')
     const location = useLocation()
-    const itemType = location.pathname
+    const itemType = location.pathname.substring(1)
     useEffectUpdate(loadItems, [], { itemType })
     const { theme } = useTheme()
 
     async function loadItems({ itemType }) {
-        const type = itemType.substring(1)
         try {
-            let _items = await itemService.getItems(type)
+            let _items = await itemService.getItems(itemType)
             if (!_items) await itemService.makeData()
-            _items = await itemService.getItems(type)
+            _items = await itemService.getItems(itemType)
             setItems(_items)
         } catch (error) {
             console.error("Failed fetching movies:", error);

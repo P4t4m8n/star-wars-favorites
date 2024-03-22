@@ -1,8 +1,7 @@
-.movie-list {
-    display: flex;
+.item-list {
     gap: 1em;
     height: fit-content;
-    width: 70vw;
+    width: 100%;
     justify-content: center;
     flex-wrap: wrap;
     

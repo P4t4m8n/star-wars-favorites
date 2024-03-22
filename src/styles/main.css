@@ -7,12 +7,12 @@
 @import './setup/vars.css';
 
 /* Views */
-@import './views/MovieIndex.css';
+@import './views/ItemIndex.css';
 @import './views/Home.css';
 
 /* Cmps */
-@import './cmps/MovieItem.css';
-@import './cmps/MovieList.css';
-@import './cmps/MovieDetails.css';
+@import './cmps/Film/FilmPreview.css';
+@import './cmps/Film/FilmDetails.css';
+@import './cmps/ItemList.css';
 @import './cmps/ThemeButton.css';
 @import './cmps/Navbar.css';

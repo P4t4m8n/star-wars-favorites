@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom"
 import ThemeButton from "../ThemeButton/ThemeButton"
 import { useTheme } from "../../hooks/useTheme"
 
-
 function Navbar() {
     const { theme } = useTheme()
     return (
