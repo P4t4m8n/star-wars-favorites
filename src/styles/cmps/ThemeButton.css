@@ -1,12 +1,18 @@
 .theme-btn {
     position: sticky;
-    top: 8%;
-    right: 88%;
+    left: 2%;
+    top: 5%;
     width: 5em;
     height: fit-content;
-    font-size: 2rem;
-    color: var(--button-bg-color);
-    border-radius: 24px;
-    border: 1px solid var(--button-bg-color);
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    font-size: var(--font-size-btn);
+    color: var(--button-text-color);
+    border-radius: var(--border-radius-s);
+    background-color: var(--button-bg-color);
+    transition: background-color 0.5s ease-in-out;
+}
+
+.theme-btn:hover {
+    cursor: pointer;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    background-color: var(--hover-bg-color);
 }
