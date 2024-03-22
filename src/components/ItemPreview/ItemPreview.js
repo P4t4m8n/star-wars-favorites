@@ -1,29 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useFlip } from '../../hooks/useFlip';
 import { FlipSvg } from '../../services/icon.service';
 import { useTheme } from '../../hooks/useTheme';
+import PreviewCharacter from './PreviewCharacter/PreviewCharacter';
+import PreviewPlanet from './PreviewPlanet/PreviewPlanet';
+import PreviewSpecie from './PreviewSpecie/PreviewSpecie';
+import PreviewFilm from './PreviewFilm/PreviewFilm';
+import PreviewStarship from './PreviewStarship/PreviewStarship';
 
 function ItemPreview({ item }) {
   const [flip, toggleFlip] = useFlip();
   const { theme } = useTheme()
-
-  const { imgUrl, episodeId, title: name, release_date } = item;
+  const { name, type } = item;
 
   return (
-    <li className={`movie-item ${flip ? 'flipped' : ''} ${theme}`} key={episodeId}>
+    <li className={`item-preview ${flip ? 'flipped' : ''} ${theme}`} key={name}>
       <button className='flip-btn' onClick={toggleFlip}><FlipSvg /></button>
-      <div className='movie-item-front'>
-        <img src={imgUrl} alt={name} />
-        <Link to={`/${episodeId}`}>{name}</Link>
-      </div>
-      <div className='movie-item-back flex flex-column'>
-        <h2>{name}</h2>
-        <h3>{release_date||''}</h3>
-        <h4>{episodeId||''}</h4>
-      </div>
+      <DynamicPreviewCmp item={item} cmpType={type} />
     </li>
   );
+}
+
+function DynamicPreviewCmp(props) {
+
+  switch (props.cmpType) {
+    case 'character':
+      return <PreviewCharacter {...props} />
+    case 'planet':
+      return <PreviewPlanet {...props} />
+    case 'specie':
+      return <PreviewSpecie {...props} />
+    case 'starship':
+      return <PreviewStarship {...props} />
+
+    default:
+      return <PreviewFilm {...props} />
+  }
 }
 
 export default ItemPreview;
