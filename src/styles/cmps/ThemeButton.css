@@ -1,18 +1,16 @@
 .theme-btn {
-    position: sticky;
-    left: 2%;
-    top: 5%;
-    width: 5em;
+
+    width: 3em;
     height: fit-content;
-    font-size: var(--font-size-btn);
-    color: var(--button-text-color);
-    border-radius: var(--border-radius-s);
-    background-color: var(--button-bg-color);
-    transition: background-color 0.5s ease-in-out;
+    fill: var(--button-bg-color);
+    transition: fill 0.5s ease-in-out;
+    padding: 0;
+    padding-block: 4px;
+
 }
 
 .theme-btn:hover {
     cursor: pointer;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    background-color: var(--hover-bg-color);
+    fill: var(--hover-bg-color);
 }

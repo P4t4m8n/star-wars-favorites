@@ -3,6 +3,7 @@
     grid-template-columns: 19vw 81vw;
     height: 100vh;
     max-width: 100vw;
+    position: relative;
 }
 
 .navbar {
@@ -28,7 +29,6 @@
     grid-area: 1/1/2/-1;
 }
 
-
 .item-details-lists {
     grid-area: 2/1/-1/-1;
     grid-template-columns: repeat(auto-fill, 21em);
@@ -39,4 +39,12 @@
     justify-content: center;
 
 
+}
+
+@media(max-width:500px) {
+    .main {
+        grid-template-columns: auto 1fr;
+     
+    
+    }
 }

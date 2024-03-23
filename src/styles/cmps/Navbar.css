@@ -2,7 +2,7 @@
     height: 100%;
     width: 100%;
     background-color: var(--nav-background-color);
-    position: relative;
+    /* position: relative; */
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: var(--border-radius-s);
 }
@@ -26,7 +26,7 @@
     line-height: 2;
     width: fit-content;
     height: fit-content;
-    border-radius:var(--border-radius-s);
+    border-radius: var(--border-radius-s);
 }
 
 .app-nav a:hover {
@@ -37,4 +37,108 @@
 
 .app-nav a:focus {
     color: var(--hover-link-color)
+}
+
+@media(max-width: 450px) {
+
+    .navbar {
+        border-radius: 0px;
+        width: 48px;
+        box-sizing: border-box;
+        background-color: var(--nav-background-color);
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        padding: .5em .5em;
+        background: hsl(0 0% 0%/0.7);
+        background-color: var(--background-color);
+        transition: width 0.7s ease;
+        animation-duration: 0.7s;
+        animation-fill-mode: both;
+        animation-name: slideOut;
+        height: 100%;
+        transition: right 0.7s ease;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 100;
+    }
+
+
+
+    .app-nav {
+        display: none;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    .app-nav a {
+        font-size: 0rem;
+        opacity: 1;
+        opacity: 0;
+        animation: increaseFontSize 0.7s ease forwards;
+    }
+
+    .slide.app-nav a {
+        width: fit-content;
+        opacity: 1;
+        font-size: 1rem;
+        transition-delay: 0.3s;
+    }
+
+    .actions {
+        width: 2em;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ham-menu svg {
+        stroke: var(--button-bg-color);
+    }
+
+    .actions svg {
+        width: 2em;
+        height: 2em;
+    }
+
+    .slide {
+        animation-name: slideIn;
+        width: 22%;
+    }
+
+    .app-nav.slide {
+        display: flex;
+    }
+
+
+
+    @keyframes slideIn {
+        from {
+            width: 48px;
+        }
+
+        to {
+            width: 22%;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            width: 22%;
+        }
+
+        to {
+            width: 48px;
+        }
+    }
+
+    @keyframes increaseFontSize {
+        from {
+            font-size: 0rem; 
+        }
+        to {
+            font-size: 1rem; 
+        }
+    }
+
 }

@@ -3,12 +3,13 @@ import { itemService } from '../services/item.service'
 import { useLoading } from '../hooks/useLoading'
 import Loading from '../components/Loading/Loading'
 import { useEffectUpdate } from '../hooks/useEffectUpdate'
-import { useTheme } from '../hooks/useTheme'
+import { useEntity } from 'simpler-state'
+import { theme } from '../store/theme.store'
 
 
 function Home() {
   const { isLoading, toggleLoading } = useLoading()
-  const { theme } = useTheme()
+  const currTheme = useEntity(theme)
   useEffectUpdate(loadItems, [])
 
   async function loadItems() {
@@ -23,7 +24,7 @@ function Home() {
 
   if (isLoading) return (<Loading />)
   return (
-    <section className={"home " + theme}>
+    <section className={"home " + currTheme}>
       <h1>Welcome to the Star Wars Universe</h1>
     </section>
   )
