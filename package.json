@@ -13,7 +13,7 @@
     "react-scripts": "5.0.1",
     "simpler-state": "^1.2.1",
     "web-vitals": "^2.1.4",
-    "homepage": "https://github.com/P4t4m8n/star-wars-favorites"
+    "homepage": "https://P4t4m8n.github.io/star-wars-favorites"
   },
   "scripts": {
     "start": "react-app-rewired start",
