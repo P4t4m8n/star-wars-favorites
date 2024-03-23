@@ -147,7 +147,7 @@ function getItemIdByUrl(type, url) {
         return _item.endPoint === url
     })
     if (!item || !item.id) {
-        console.error('Item or item.id not found for url:', url.item);
+        // console.error('Item or item.id not found for url:', url);
         return null
     }
     return item.id
