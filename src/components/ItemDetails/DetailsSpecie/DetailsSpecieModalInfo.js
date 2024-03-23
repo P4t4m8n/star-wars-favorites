@@ -4,7 +4,7 @@ function DetailsSpecieModalInfo({ item }) {
     const { name, imgUrl, skin_colors, language, classification } = item
     return (
         <div className='item-info flex'>
-            <img src={imgUrl} alt={name}></img>
+            <img className="modal-img" src={imgUrl} alt={name}></img>
             <div className="modal-info flex flex-column">
                 <h2>Name: {name}</h2>
                 <h3>Skin Colors: {skin_colors}</h3>

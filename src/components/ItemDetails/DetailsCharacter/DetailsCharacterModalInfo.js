@@ -4,7 +4,7 @@ function DetailsCharacterModalInfo({ item }) {
     const { name, imgUrl, birth_year, eye_color, gender } = item
     return (
         <div className='item-info flex'>
-            <img src={imgUrl} alt={name}></img>
+            <img className="modal-img" src={imgUrl} alt={name}></img>
             <div className="modal-info flex flex-column">
                 <h2>Title: {name}</h2>
                 <h3>Birth Year: {birth_year}</h3>

@@ -88,11 +88,12 @@
         padding: 4px 4px 4px 24%;
         position: relative;
 
-        img {
-            padding-top: 4px;
-            width: 90%;
-            height: 80%;
-        }
+    }
+
+    .details-img {
+        padding-top: 4px;
+        width: 90%;
+        height: 80%;
     }
 
     .details-list-container {

@@ -11,7 +11,7 @@ function DetailsModalInfo({ item }) {
     const localDate = convertToLocalDate(release_date)
     return (
         <div className='item-info flex'>
-            <img src={imgUrl} alt={name}></img>
+            <img className="modal-img" src={imgUrl} alt={name}></img>
             <div className="modal-info flex flex-column">
                 <h2>Title: {name}</h2>
                 <h3>Episode Number: {episodeNumber}</h3>

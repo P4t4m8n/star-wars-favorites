@@ -4,7 +4,7 @@ function DetailsPlanetModalInfo({ item }) {
     const { name, imgUrl, population, terrain, climate } = item
     return (
         <div className='item-info flex'>
-            <img src={imgUrl} alt={name}></img>
+            <img className="modal-img" src={imgUrl} alt={name}></img>
             <div className="modal-info flex flex-column">
                 <h2>Name: {name}</h2>
                 <h3>Population: {population}</h3>

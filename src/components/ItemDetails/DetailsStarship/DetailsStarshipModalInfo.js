@@ -2,7 +2,7 @@ function DetailsStarshipModalInfo({ item }) {
     const { name, imgUrl, manufacturer, model, starship_class } = item
     return (
         <div className='item-info flex'>
-            <img src={imgUrl} alt={name}></img>
+            <img className="modal-img" src={imgUrl} alt={name}></img>
             <div className="modal-info flex flex-column">
                 <h2>Name: {name}</h2>
                 <h3>Manufacturer: {manufacturer}</h3>

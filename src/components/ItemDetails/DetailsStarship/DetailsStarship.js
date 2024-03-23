@@ -14,7 +14,7 @@ function DetailsStarship({ item }) {
     return (
         <>
             <div className={'item-details-list ' + currTheme} onClick={() => setOpen(true)}>
-                <img src={imgUrl} alt=''></img>
+                <img className="details-img" src={imgUrl} alt=''></img>
             </div>
 
 

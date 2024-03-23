@@ -27,7 +27,7 @@ function DetailsFilm({ item }) {
         <>
 
             <div className={'film-details ' + currTheme} onClick={() => setOpen(true)}>
-                <img src={imgUrl} alt=''></img>
+                <img className="details-img" src={imgUrl} alt=''></img>
                 <div className='opening_crawl'>
                     <p ref={elRef} className='scroll-text'>
                         {opening_crawl || ''}
