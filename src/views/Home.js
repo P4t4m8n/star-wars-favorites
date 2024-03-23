@@ -22,7 +22,7 @@ function Home() {
     }
   }
 
-  if (isLoading) return (<Loading />)
+   return (<Loading />)
   return (
     <section className={"home " + currTheme}>
       <h1>Welcome to the Star Wars Universe</h1>

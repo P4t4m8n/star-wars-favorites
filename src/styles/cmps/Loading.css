@@ -7,8 +7,6 @@
     background-color: var(--background-color);
     justify-content: center;
     gap: 1em;
-
-
 }
 
 .loading-container img {
@@ -25,6 +23,7 @@
     animation: fadeInOut 3s ease-in-out infinite;
     text-align: center;
     font-size: 2rem;
+    height: 100px;
 }
 
 @keyframes spin {
@@ -46,5 +45,15 @@
 
     50% {
         opacity: 1;
+    }
+}
+
+@media(max-width:450px) {
+
+    .loading-container{
+        padding-left: 15%;
+    }
+    .fade-text {
+        width: 250px;
     }
 }

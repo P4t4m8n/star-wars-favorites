@@ -11,7 +11,8 @@
 }
 
 .app,
-.home {
+.home,
+.loading-container {
     grid-area: 1/2/-1/-1;
 }
 
@@ -44,7 +45,7 @@
 @media(max-width:500px) {
     .main {
         grid-template-columns: auto 1fr;
-     
-    
+
+
     }
 }

@@ -2,15 +2,16 @@
     height: 100%;
     width: 100%;
     background-color: var(--nav-background-color);
-    /* position: relative; */
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    border-radius: var(--border-radius-s);
+    padding: 8px 0 0 8px;
+}
+
+.ham-menu {
+    display: none;
 }
 
 .app-nav {
-    position: sticky;
-    top: 20%;
-    left: 2%;
+  
     width: fit-content;
     gap: 1em;
 }
@@ -63,7 +64,9 @@
         z-index: 100;
     }
 
-
+    .ham-menu {
+        display: block;
+    }
 
     .app-nav {
         display: none;
@@ -134,10 +137,11 @@
 
     @keyframes increaseFontSize {
         from {
-            font-size: 0rem; 
+            font-size: 0rem;
         }
+
         to {
-            font-size: 1rem; 
+            font-size: 1rem;
         }
     }
 
