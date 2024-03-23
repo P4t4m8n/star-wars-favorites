@@ -27,7 +27,7 @@ function ItemIndex() {
     }
     console.log('t')
 
-    if (!items) return <Loading message="Loading Movies..." />
+    if (!items)  return (<Loading />)
 
     return (
         <section className={`app flex flex-column ${currTheme}`} >

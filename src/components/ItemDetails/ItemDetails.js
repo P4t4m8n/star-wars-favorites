@@ -22,7 +22,7 @@ function ItemDetails() {
     setItem(_item)
   }
 
-  if (!item) return <Loading message='Loading Movie' />
+  if (!item) return (<Loading />)
   return (
     <div className={`item-details grid ${currTheme} `}>
       <DynamicDetailsCmp item={item} cmpType={item.type} />
