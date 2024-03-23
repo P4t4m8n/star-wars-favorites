@@ -1,6 +1,7 @@
 
 export const utilService = {
-    makeId
+    makeId,
+    debounce
 }
 
 function makeId(length = 10) {
@@ -10,4 +11,14 @@ function makeId(length = 10) {
         text += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     return text
+}
+
+function debounce(func, delay = 2000) {
+    let timeoutId
+    return function (...args) {
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => {
+            func.apply(this, args)
+        }, delay)
+    }
 }

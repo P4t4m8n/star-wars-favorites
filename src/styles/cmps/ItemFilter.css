@@ -1,0 +1,9 @@
+.item-filter {
+    color: var(--text-color);
+    gap: 1em;
+
+    input{
+        border-radius: var(--font-size-btn);
+        border: none;
+    }
+}

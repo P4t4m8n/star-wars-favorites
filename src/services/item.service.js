@@ -15,17 +15,31 @@ export const itemService = {
     getItemById,
     getItems,
     fixAttribute,
-    saveItems
+    saveItems,
+    getFilterFromQueryString
 }
-function getItems(itemType) {
-    const items = _loadFromStorage(itemType)
+function getItems(itemType, filterBy = {}) {
+    let items = _loadFromStorage(itemType)
+    if (filterBy.name) {
+        const regExp = new RegExp(filterBy.name, 'i')
+        items = items.filter(item => regExp.test(item.name))
+    }
+
     return items
+}
+
+function getFilterFromQueryString(searchParams) {
+    const name = searchParams.get('name') || ''
+
+    return {
+        name,
+
+    }
 }
 
 function saveItems(type, items) {
     _saveToStorage(type, items)
 }
-
 // Asynchronously retrieves items either from local storage or the API if not available in storage.
 async function makeData() {
     // Attempt to load items from local storage.
