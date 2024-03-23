@@ -1,21 +1,16 @@
-import { useState } from "react"
+import { useEntity } from "simpler-state"
 import { StarSvg } from "../../services/icon.service"
-import { itemService } from "../../services/item.service"
+import { favorites, updateFavorite } from "../../store/favorite.store"
 
 
-function FavoriteButton({ item }) {
-
-    const [favorite, setFavorite] = useState(item.isFavorite)
-
-    const handleFavorite = (item) => {
-        item.isFavorite = !item.isFavorite
-        itemService.updateItem(item)
-        setFavorite(item.isFavorite)
-    }
+function FavoriteButton({ itemId }) {
+    const currFavorites = useEntity(favorites)
+    console.log("currFavorites:", currFavorites)
+    const isFavorite = currFavorites.some(item => item === itemId)
 
     return (
-        <button className='fav-btn' onClick={() => handleFavorite(item)}          >
-            {item.isFavorite ? <StarSvg fill='white' /> : <StarSvg fill='none' />}
+        <button className='fav-btn' onClick={() => updateFavorite(itemId)}          >
+            {isFavorite ? <StarSvg fill='white' /> : <StarSvg fill='none' />}
         </button>
 
     )

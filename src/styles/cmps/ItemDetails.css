@@ -77,7 +77,11 @@
 
     .item-details-lists {
         width: 90%;
-        /* justify-items: center; */
+        height: fit-content;
+        grid-template-columns: auto;
+        gap: 1em;
+        grid-template-rows: repeat(auto-fill, 30vh);
+
     }
 
     .item-details-list {
@@ -90,10 +94,10 @@
 
     }
 
-    .details-img {
+    .item-details-list .details-img {
         padding-top: 4px;
         width: 90%;
-        height: 80%;
+        border-radius: var(--border-radius-s);
     }
 
     .details-list-container {

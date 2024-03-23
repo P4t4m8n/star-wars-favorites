@@ -26,7 +26,7 @@ function ItemDetails() {
   if (!item) return (<Loading />)
   return (
     <div className={`item-details grid ${currTheme} `}>
-      <FavoriteButton item={item}/>
+      <FavoriteButton itemId={item.id} />
       <DynamicDetailsCmp item={item} cmpType={item.type} />
     </div>
   )

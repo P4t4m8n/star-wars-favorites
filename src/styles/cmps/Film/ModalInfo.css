@@ -20,13 +20,7 @@
 
     .modal-img {
         object-fit: scale-down;
-      
     }
 
-    .modal-info {
 
-        h2,
-        h3 {}
-
-    }
 }

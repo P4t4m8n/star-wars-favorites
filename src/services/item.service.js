@@ -6,6 +6,7 @@ export const PLANETS_DB = 'planet' // Constant for the local storage key.
 export const SPECIES_DB = 'specie' // Constant for the local storage key.
 export const STARSHIPS_DB = 'starship' // Constant for the local storage key.
 export const CHARACTERS_DB = 'character' // Constant for the local storage key.
+export const FAVORITE_DB = 'favorite' // Constant for the local storage key.
 export const BASE_API_URL = 'https://swapi.dev/api/'//Constant for main api url
 
 export const itemService = {
@@ -13,16 +14,28 @@ export const itemService = {
     updateItem,
     getItemById,
     getItems,
-    fixAttribute
+    fixAttribute,
+    saveItems
 }
 function getItems(itemType) {
     const items = _loadFromStorage(itemType)
     return items
 }
+
+function saveItems(type, items) {
+    _saveToStorage(type, items)
+}
+
 // Asynchronously retrieves items either from local storage or the API if not available in storage.
 async function makeData() {
     // Attempt to load items from local storage.
     let results = _loadFromStorage(FILM_DB)
+    //Build favorites
+    let favorites = _loadFromStorage(FAVORITE_DB)
+    if (!favorites) {
+        favorites = []
+        _saveToStorage(FAVORITE_DB, favorites)
+    }
     // If items exist in local storage, return them to avoid unnecessary API calls.
     if (results && results.length > 0) return
     // If items are not in local storage, fetch them from the API.
@@ -90,7 +103,6 @@ async function makeData() {
         console.error("Error fetching items from API:", error)
     }
 }
-
 function updateItem(item) {
     const items = _loadFromStorage(item.type)
     const idx = items.findIndex(_item => _item.id === item.id)
@@ -99,7 +111,6 @@ function updateItem(item) {
     _saveToStorage(item.type, items)
     return item
 }
-
 //Lazy search function
 function getItemById(id) {
     const dbs = [FILM_DB, PLANETS_DB, SPECIES_DB, STARSHIPS_DB, CHARACTERS_DB]
@@ -116,7 +127,6 @@ function getItemById(id) {
     }
     return foundItem
 }
-
 function getItemIdByUrl(type, url) {
     const items = _loadFromStorage(type)
     const item = items.find(_item => {
@@ -128,10 +138,7 @@ function getItemIdByUrl(type, url) {
     }
     return item.id
 }
-
 //Asynchronously retrieves items base on items array in item
-
-
 async function _fetchItems(items, type) {
     try {
         // Collect all the promises for the initial fetch
@@ -160,16 +167,7 @@ async function _fetchItems(items, type) {
         console.error("Error fetching data:", error)
     }
 }
-
-//Clean array from duplication lazy soultion
-// function _removeDuplicatesByProperty(arr, propName) {
-//     return arr.filter((item, index, self) =>
-//         index === self.findIndex((t) => (
-//             t[propName] === item[propName]
-//         ))
-//     )
-// }
-//Clean array from duplication More Efficent soultion
+//Clean array from duplication More Efficient soultion
 function _removeDuplicatesByProperty(arr, propName) {
     const hashMap = {}
     const result = []
@@ -181,18 +179,15 @@ function _removeDuplicatesByProperty(arr, propName) {
     }
     return result
 }
-
 function _saveToStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value))
 }
-
 function _loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return data ? JSON.parse(data) : undefined
 }
-
 function fixAttribute() {
-    const dbs = [PLANETS_DB, SPECIES_DB, STARSHIPS_DB, CHARACTERS_DB,FILM_DB]
+    const dbs = [PLANETS_DB, SPECIES_DB, STARSHIPS_DB, CHARACTERS_DB, FILM_DB]
 
     dbs.forEach(db => {
         const items = _loadFromStorage(db)
