@@ -1,7 +1,6 @@
 
 
 function DetailsModalInfo({ item }) {
-    console.log("item:", item)
     function convertToLocalDate(dateString) {
         const date = new Date(dateString)
         return date.toLocaleDateString('he-IL')

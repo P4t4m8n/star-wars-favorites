@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { itemService } from '../../services/item.service';
-import Loading from '../Loading/Loading';
-import DetailsFilm from './DetailsFilm/DetailsFilm';
-import { useEffectUpdate } from '../../hooks/useEffectUpdate';
-import { theme } from '../../store/theme.store';
-import { useEntity } from 'simpler-state';
-import DetailsCharacter from './DetailsCharacter/DetailsCharacter';
-import DetailsPlanet from './DetailsPlanet/DetailsPlanet';
-import DetailsSpecie from './DetailsSpecie/DetailsSpecie';
-import DetailsStarship from './DetailsStarship/DetailsStarship';
-import FavoriteButton from '../FavoriteButton/FavortieButton';
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { itemService } from '../../services/item.service'
+import Loading from '../Loading/Loading'
+import DetailsFilm from './DetailsFilm/DetailsFilm'
+import { useEffectUpdate } from '../../hooks/useEffectUpdate'
+import { theme } from '../../store/theme.store'
+import { useEntity } from 'simpler-state'
+import DetailsCharacter from './DetailsCharacter/DetailsCharacter'
+import DetailsPlanet from './DetailsPlanet/DetailsPlanet'
+import DetailsSpecie from './DetailsSpecie/DetailsSpecie'
+import DetailsStarship from './DetailsStarship/DetailsStarship'
+import FavoriteButton from '../FavoriteButton/FavortieButton'
 
 function ItemDetails() {
   const [item, setItem] = useState(null)

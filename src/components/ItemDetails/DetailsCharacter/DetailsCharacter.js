@@ -1,12 +1,11 @@
 import { useEntity } from "simpler-state"
 import { theme } from "../../../store/theme.store"
-import DetailsItemList from "../DetailsItemList";
-import DetailsModal from "../DetailsModal";
-import { useState } from "react";
-import DetailsCharacterModalInfo from "./DetailsCharacterModalInfo";
+import DetailsItemList from "../DetailsItemList"
+import DetailsModal from "../DetailsModal"
+import { useState } from "react"
+import DetailsCharacterModalInfo from "./DetailsCharacterModalInfo"
 
 function DetailsCharacter({ item }) {
-    console.log("item:", item)
     const currTheme = useEntity(theme)
     const [open, setOpen] = useState(false)
 

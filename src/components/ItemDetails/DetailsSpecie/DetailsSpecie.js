@@ -1,9 +1,9 @@
 import { useEntity } from "simpler-state"
 import { theme } from "../../../store/theme.store"
-import DetailsItemList from "../DetailsItemList";
-import DetailsModal from "../DetailsModal";
-import { useState } from "react";
-import DetailsSpecieModalInfo from "./DetailsSpecieModalInfo";
+import DetailsItemList from "../DetailsItemList"
+import DetailsModal from "../DetailsModal"
+import { useState } from "react"
+import DetailsSpecieModalInfo from "./DetailsSpecieModalInfo"
 
 
 function DetailsSpecie({ item }) {

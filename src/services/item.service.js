@@ -147,7 +147,7 @@ function getItemIdByUrl(type, url) {
         return _item.endPoint === url
     })
     if (!item || !item.id) {
-        // console.error('Item or item.id not found for url:', url);
+        // console.error('Item or item.id not found for url:', url)
         return null
     }
     return item.id
@@ -172,7 +172,7 @@ async function _fetchItems(items, type) {
                     type,
                     imgUrl,
                 }
-            } catch (error) { throw error; }
+            } catch (error) { throw error }
         })
         // Await the transformation promises
         const transformedItemObjArray = await Promise.all(transformationPromises)
@@ -218,11 +218,11 @@ function fixAttribute() {
             }
             if (item.pilots && item.pilots.length > 0) {
                 characters = item.pilots.map(item => getItemIdByUrl(CHARACTERS_DB, item))
-                delete item.pilots;
+                delete item.pilots
             }
             if (item.people && item.people.length > 0) {
                 characters = item.people.map(item => getItemIdByUrl(CHARACTERS_DB, item))
-                delete item.people;
+                delete item.people
             }
             if (item.planets && item.planets.length > 0) {
                 planets = item.planets.map(planet => getItemIdByUrl(PLANETS_DB, planet))

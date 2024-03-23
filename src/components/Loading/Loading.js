@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
 function Loading() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -24,7 +24,7 @@ function Loading() {
         {texts[currentTextIndex]}
       </div>
     </div>
-  );
+  )
 }
 
-export default Loading;
+export default Loading

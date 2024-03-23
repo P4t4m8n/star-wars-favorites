@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { itemService } from '../../services/item.service';
-import Loading from '../Loading/Loading';
-import { useEffectUpdate } from '../../hooks/useEffectUpdate';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { itemService } from '../../services/item.service'
+import Loading from '../Loading/Loading'
+import { useEffectUpdate } from '../../hooks/useEffectUpdate'
 
 function DetailsItemList({ items }) {
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1)
     const [loadedItems, setLoadedItems] = useState(null)
     useEffectUpdate(loadItems)
 
@@ -20,7 +20,7 @@ function DetailsItemList({ items }) {
 
     if (!loadedItems) return (<Loading />)
 
-    const itemsPerPage = 5;
+    const itemsPerPage = 5
     const totalPages = Math.ceil(loadedItems.length / itemsPerPage)
     const indexOfLastItem = currentPage * itemsPerPage
     const indexOfFirstItem = indexOfLastItem - itemsPerPage
@@ -45,7 +45,7 @@ function DetailsItemList({ items }) {
                 <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>{">>"}</button>
             </div>
         </>
-    );
+    )
 }
 
-export default DetailsItemList;
+export default DetailsItemList

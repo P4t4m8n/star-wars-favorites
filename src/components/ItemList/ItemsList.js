@@ -1,5 +1,5 @@
-import React from 'react';
-import ItemPreview from '../ItemPreview/ItemPreview';
+import React from 'react'
+import ItemPreview from '../ItemPreview/ItemPreview'
 
 
 function ItemsList({ items }) {
@@ -17,7 +17,7 @@ function ItemsList({ items }) {
 
       }
     </ul>
-  );
+  )
 }
 
-export default ItemsList;
+export default ItemsList
