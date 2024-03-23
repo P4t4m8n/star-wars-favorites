@@ -4,12 +4,12 @@
   position: relative;
   z-index: 0;
   gap: 1em;
-  border-radius: 12px;
   justify-content: center;
   border: 2px solid var(--link-color);
   overflow-x: hidden;
   width: 100%;
 }
+
 
 /* .app::before {
   content: "";
@@ -32,6 +32,8 @@
 } */
 
 /* @media (prefers-reduced-motion: no-preference) {
+
+
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }

@@ -8,3 +8,9 @@
     flex-wrap: wrap;
 
 }
+
+@media(max-width:450px) {
+    .item-list {
+        padding-left: 13%;
+    }
+}

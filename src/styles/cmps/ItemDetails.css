@@ -8,7 +8,9 @@
 
 .item-details-list img {
     height: 100%;
-    object-fit: cover;
+    width: 100%;
+    object-fit: fill;
+    object-position: center;
 }
 
 .details-list-container {
@@ -69,4 +71,37 @@
 .pagination {
     width: 100%;
     justify-content: center;
+}
+
+@media (max-width:450px) {
+
+    .item-details-lists {
+        width: 90%;
+        /* justify-items: center; */
+    }
+
+    .item-details-list {
+        width: 85%;
+    }
+
+    .item-details {
+        padding: 4px 4px 4px 24%;
+        position: relative;
+
+        img {
+            padding-top: 4px;
+            width: 90%;
+            height: 80%;
+        }
+    }
+
+    .details-list-container {
+        width: 90%;
+        margin-left: 3%;
+
+        .details-list {
+            overflow-x: scroll;
+            justify-content: start;
+        }
+    }
 }

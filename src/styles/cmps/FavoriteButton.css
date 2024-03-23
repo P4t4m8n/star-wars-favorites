@@ -8,3 +8,14 @@
     width: 2rem;
     height: 2rem;
 }
+
+@media(max-width:450px) {
+    .fav-btn {
+        top: 1%;
+        right: 15%;
+    }
+
+    .details-list-container {
+        width: 80%;
+    }
+}

@@ -1,6 +1,6 @@
 /* Main */
 .main {
-    grid-template-columns: 19vw 81vw;
+    grid-template-columns: minmax(140px,15vw) 85vw;
     height: 100vh;
     max-width: 100vw;
     position: relative;
@@ -46,6 +46,7 @@
     .main {
         grid-template-columns: auto 1fr;
 
-
     }
+
+
 }

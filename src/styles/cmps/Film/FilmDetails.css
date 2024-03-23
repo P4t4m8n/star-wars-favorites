@@ -88,20 +88,15 @@
     }
 }
 
-@media (max-width:var(--breakpoint-mobile)) {
-    .film-details img {
-        object-fit: fill;
-        height: 100%;
-        width: 100%;
+@media (max-width:450px) {
+    .opening_crawl{
+        width: 50%;
+        left:30%;
     }
 
-    .film-details .film-info {
+   
 
-        top: 25%;
-        left: 15%;
-    }
-
-    .film-details .film-info h2 {
-        font-size: 1rem;
+    .film-details{
+        width: 80%;
     }
 }
