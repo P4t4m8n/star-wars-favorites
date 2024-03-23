@@ -10,6 +10,7 @@ This React application fetches movies from the Star Wars API (SWAPI) and lets us
     - [Installing](#installing)
   - [SWAPI Documentation](#swapi-documentation)
   - [Tasks](#tasks)
+  - [Key Changes](#key-changes)
 
 
 
@@ -71,3 +72,15 @@ Please notice the the SWAPI API might take some time to respond
     - Once finished, upload the project to github.
     - Try to clone your code and run it - make sure all works after cloning
     - Make sure the site works as expected
+
+
+## Key Changes 
+    - Enhanced Content: The application now extends its support beyond the entire Star Wars franchise.
+
+    - Item Connections: Allow to see connections between items like movies character and more
+
+    - Favorites Feature: Users can mark movies and characters etc as favorites.
+
+    - Updated Data Fetching: The application  makes multiple API calls upon loading. 
+
+     - State Management: A more efficient state management system has been integrated to ensure smoother performance and user experience.
