@@ -1,9 +1,39 @@
 .item-filter {
     color: var(--text-color);
     gap: 1em;
+    width: 80%;
 
-    input{
+    input {
         border-radius: var(--font-size-btn);
         border: none;
     }
+}
+
+@media (max-width:450px) {
+    .item-filter h2 {
+        font-size: 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        /* text-overflow: ellipsis; */
+    }
+    .item-filter {
+        color: var(--text-color);
+        gap: .9em;
+        width: 80%;
+        justify-content: center;
+
+        input {
+            border-radius: var(--font-size-btn);
+            border: none;
+            width: 50%;
+        }
+        h2 {
+            font-size: 1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 2.95em;
+            padding-left: 6px;
+        }
+    }
+    
 }
