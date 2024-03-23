@@ -1,13 +1,16 @@
+import { useState } from "react"
 import { StarSvg } from "../../services/icon.service"
 import { itemService } from "../../services/item.service"
 
 
 function FavoriteButton({ item }) {
 
+    const [favorite, setFavorite] = useState(item.isFavorite)
+
     const handleFavorite = (item) => {
         item.isFavorite = !item.isFavorite
         itemService.updateItem(item)
-
+        setFavorite(item.isFavorite)
     }
 
     return (

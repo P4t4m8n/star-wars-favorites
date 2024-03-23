@@ -1,0 +1,10 @@
+.fav-btn {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+.fav-btn svg {
+    width: 2rem;
+    height: 2rem;
+}

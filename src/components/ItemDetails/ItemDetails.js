@@ -10,6 +10,7 @@ import DetailsCharacter from './DetailsCharacter/DetailsCharacter';
 import DetailsPlanet from './DetailsPlanet/DetailsPlanet';
 import DetailsSpecie from './DetailsSpecie/DetailsSpecie';
 import DetailsStarship from './DetailsStarship/DetailsStarship';
+import FavoriteButton from '../FavoriteButton/FavortieButton';
 
 function ItemDetails() {
   const [item, setItem] = useState(null)
@@ -25,6 +26,7 @@ function ItemDetails() {
   if (!item) return (<Loading />)
   return (
     <div className={`item-details grid ${currTheme} `}>
+      <FavoriteButton item={item}/>
       <DynamicDetailsCmp item={item} cmpType={item.type} />
     </div>
   )
