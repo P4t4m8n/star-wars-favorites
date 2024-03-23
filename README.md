@@ -75,12 +75,12 @@ Please notice the the SWAPI API might take some time to respond
 
 
 ## Key Changes 
-    - Enhanced Content: The application now extends its support beyond the entire Star Wars franchise.
+  - Enhanced Content: The application now extends its support beyond the entire Star Wars franchise.
 
-    - Item Connections: Allow to see connections between items like movies character and more
+  - Item Connections: Allow to see connections between items like movies character and more
 
-    - Favorites Feature: Users can mark movies and characters etc as favorites.
+  - Favorites Feature: Users can mark movies and characters etc as favorites.
 
-    - Updated Data Fetching: The application  makes multiple API calls upon loading. 
+  - Updated Data Fetching: The application  makes multiple API calls upon loading. 
 
-     - State Management: A more efficient state management system has been integrated to ensure smoother performance and user experience.
+  - State Management: A more efficient state management system has been integrated to ensure smoother performance and user experience.
