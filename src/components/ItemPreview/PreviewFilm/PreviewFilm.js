@@ -13,7 +13,7 @@ function PreviewFilm({ item }) {
         <>
             <div className={`film-preview-front`}>
                 <img src={imgUrl} alt={name} />
-                <Link to={`${id}`}>{name}</Link>
+                <Link to={`/film/${id}`}>{name}</Link>
             </div>
             <div className='film-preview-back flex flex-column'>
                 <h2>{name}</h2>

@@ -14,7 +14,7 @@ export function FlipSvg() {
 
 export function HamburgerSvg() {
     return (
-        <svg  viewBox="0 0 24 24"  ><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 12.32H22"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M2 18.32H22"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M2 6.32001H22"  stroke-width="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
+        <svg  viewBox="0 0 24 24"  ><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 12.32H22"  strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M2 18.32H22"  strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M2 6.32001H22"  strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
     )
 }
 

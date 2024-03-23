@@ -6,6 +6,7 @@ import { useEffectUpdate } from "../hooks/useEffectUpdate";
 import { useLocation } from "react-router-dom";
 import { theme } from "../store/theme.store";
 import { useEntity } from "simpler-state";
+import { getFavorites } from "../store/favorite.store";
 
 function ItemIndex() {
 
@@ -17,9 +18,13 @@ function ItemIndex() {
 
     async function loadItems({ itemType }) {
         try {
-            let _items = await itemService.getItems(itemType)
-            if (!_items) await itemService.makeData()
-            _items = await itemService.getItems(itemType)
+            let _items
+            if (itemType === 'favorite') _items =  getFavorites() || []
+            else {
+                _items = await itemService.getItems(itemType)
+                if (!_items) await itemService.makeData()
+                _items = await itemService.getItems(itemType)
+            }
             setItems(_items)
         } catch (error) {
             console.error("Failed fetching movies:", error);
@@ -27,7 +32,7 @@ function ItemIndex() {
     }
     console.log('t')
 
-    if (!items)  return (<Loading />)
+    if (!items) return (<Loading />)
 
     return (
         <section className={`app flex flex-column ${currTheme}`} >

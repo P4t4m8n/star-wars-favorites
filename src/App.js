@@ -30,6 +30,8 @@ function App() {
 
               <Route path="/starship" element={<ItemIndex />} />
               <Route path="/starship/:id" element={<ItemDetails />} />
+              
+              <Route path="/favorite" element={<ItemIndex />} />
 
             </Routes>
           </LoadingProvider>

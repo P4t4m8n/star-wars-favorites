@@ -5,7 +5,7 @@ function PreviewPlanet({ item }) {
     return <>
         <div className={`character-preview-front`}>
             <img src={imgUrl} alt={name} />
-            <Link to={`${id}`}>{name}</Link>
+            <Link to={`/planet/${id}`}>{name}</Link>
         </div>
         <div className='character-preview-back flex flex-column'>
             <h2>{name}</h2>

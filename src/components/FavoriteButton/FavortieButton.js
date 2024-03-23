@@ -5,7 +5,6 @@ import { favorites, updateFavorite } from "../../store/favorite.store"
 
 function FavoriteButton({ itemId }) {
     const currFavorites = useEntity(favorites)
-    console.log("currFavorites:", currFavorites)
     const isFavorite = currFavorites.some(item => item === itemId)
 
     return (

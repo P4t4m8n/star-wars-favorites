@@ -23,6 +23,7 @@ function Navbar() {
                 <NavLink to={"/specie"}>Species</NavLink>
                 <NavLink to={"/starship"}>Starships</NavLink>
                 <NavLink to={"/planet"}>Planets</NavLink>
+                <NavLink to={"/favorite"}>Favorites</NavLink>
             </nav>
         </section>
     )
