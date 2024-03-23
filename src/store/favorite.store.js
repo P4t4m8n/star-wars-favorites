@@ -11,9 +11,7 @@ const loadFavorites = async () => {
 export const getFavorites = () => {
     const _favorites = favorites.get()
     const loadFavorites = _favorites.map( fav =>  itemService.getItemById(fav))
-    console.log("loadFavorites:", loadFavorites)
     return loadFavorites
-
 }
 
 export const updateFavorite = (itemId) => {

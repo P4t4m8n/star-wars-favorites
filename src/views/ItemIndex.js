@@ -34,12 +34,10 @@ function ItemIndex() {
         } setSearchParams(filterBy)
     }
     function onSetFilter(filterBy) {
-        console.log("filterBy:", filterBy)
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
 
     }
     if (!items) return (<Loading />)
-console.log('!')
     return (
         <section className={`app flex flex-column ${currTheme}`} >
             <ItemFilter filterBy={filterBy} onSetFilter={onSetFilter} />

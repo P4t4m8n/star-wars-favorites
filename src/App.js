@@ -2,14 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ItemIndex from './views/ItemIndex';
 import ItemDetails from './components/ItemDetails/ItemDetails';
-import { ThemeProvider } from './hooks/useTheme';
 import Navbar from './components/Navbar/Navbar';
 import Home from './views/Home';
 import { LoadingProvider } from './hooks/useLoading';
 
 function App() {
   return (
-    <ThemeProvider>
       <section className='main grid'>
         <Router>
           <LoadingProvider>
@@ -37,7 +35,6 @@ function App() {
           </LoadingProvider>
         </Router>
       </section>
-    </ThemeProvider>
   );
 }
 
